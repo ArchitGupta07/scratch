@@ -13,7 +13,7 @@ class Projects(models.Model):
     def __str__(self):
         return self.project_name
     
-    
+
 class Gallery(models.Model):
     project_name = models.ForeignKey(Projects,max_length=100, null=True,on_delete=models.CASCADE)
 
@@ -27,6 +27,8 @@ class Profiles(models.Model):
     
     password = models.CharField(max_length=100,null=False)
     location = models.CharField(max_length=100, default='None')
+
+    image = models.ImageField(upload_to="static/images",default='None')
 
     # friends = models.CharField(max_length=100,null=False,default='None')
     email = models.EmailField(default='None')

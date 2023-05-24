@@ -9,7 +9,12 @@ from django.contrib.auth import logout, login
 def index(request):
     if request.user.is_anonymous:
         return redirect('/login')
-    return render(request,'index.html')
+    
+
+   
+
+    profile = Profiles.objects.get(username = request.user)
+    return render(request,'index.html',{'profile':profile})
 
 def loginUser(request):
 

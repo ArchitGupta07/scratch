@@ -5,8 +5,8 @@
 <div class="container">
     <div class="d-flex gap-8 ">
         <div>
-            <div class="flex-grow-1 col-xs-6">
-                <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+            <div  class="flex-grow-1 col-xs-6">
+                <div class="text-bg-dark border border-success rounded me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center  overflow-hidden">
                     <div class="my-3 py-3">
                     <h2 class="display-5">Another headline</h2>
                     <p class="lead">And an even wittier subheading.</p>
@@ -57,19 +57,18 @@
                         </div>
                         <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
                           <div class="d-flex flex-start w-100">
-                            <img class="rounded-circle shadow-1-strong me-3"
-                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40"
-                              height="40" />
-                            <div class="form-outline w-100">
-                              <textarea class="form-control" id="textAreaExample" rows="4"
-                                style="background: #fff;"></textarea>
-                              <label class="form-label" for="textAreaExample">Message</label>
-                            </div>
+                            
+                            <form method="POST" action="/" >
+                                {% csrf_token %}
+                              <textarea class="form-control" id="comment" name="comment" rows="4"   style="background: #fff;"></textarea>
+                            
+                             
+                                <button type="submit" class="btn btn-primary btn-sm">Post comment</button>
+                                
+                              
+                            </form>
                           </div>
-                          <div class="float-end mt-2 pt-1">
-                            <button type="button" class="btn btn-primary btn-sm">Post comment</button>
-                            <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
-                          </div>
+                         
                         </div>
                       </div>
                     </div>

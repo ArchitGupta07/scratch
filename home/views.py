@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
-from .models import Profiles,Projects,Gallery
+from .models import Profiles,Projects,Gallery,Pcomments
 
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login
+import datetime
 
 # Create your views here.
 def index(request):
@@ -42,10 +43,22 @@ def logoutUser(request):
    return redirect("/login")
 
 
-def projects(request):
+def projects(request):  
 
-  
-         return render(request,'projects.html')
+    if request.method=='POST':
+        username = request.user
+        comment = request.POST.get('comment')
+        print(comment)
+
+        new_comment = Pcomments(username=username,comment=comment,date = datetime.date.today())
+        new_comment.save()
+
+    
+    return render(request,'projects.html')
+
+
+
+
 def register(request):
     if request.method=='POST':
         first_name = request.POST.get('first_name')

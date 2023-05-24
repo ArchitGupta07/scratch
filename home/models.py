@@ -24,8 +24,12 @@ class Gallery(models.Model):
 class Profiles(models.Model):
     first_name = models.CharField(max_length=100,null=False)
     last_name = models.CharField(max_length=100,null=False,default='None')
-    location = models.CharField(max_length=100)
-    friends = models.CharField(max_length=100,null=False,default='None')
+    username = models.CharField(max_length=100,null=False,default='None')
+    
+    password = models.CharField(max_length=100,null=False)
+    location = models.CharField(max_length=100, default='None')
+
+    # friends = models.CharField(max_length=100,null=False,default='None')
     email = models.EmailField(default='None')
     
 

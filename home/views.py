@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate
-from .models import Profiles,Projects,Gallery,Pcomments
+from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects
 
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login
@@ -132,17 +132,26 @@ def project_page(request,project_name):
     
 
     print(proj.project_name)
-    if request.method=='POST':        
+    if 'com' in request.POST:       
         comment = request.POST.get('comment')
         # print(comment)
 
         p = Projects.objects.get(project_name=proj.project_name)
-        # print(p,' Archit')
+        print(p,' Archit')
         user_comment = request.user
         new_comment = Pcomments(username=user_comment,comment=comment,date = datetime.date.today(), pname = p)
         new_comment.save()
 
         return redirect(reverse('project_page', args=[project_name]))
+    elif 'tags' in request.POST:
+        tag = request.POST.get('tag')
+        t = Projects.objects.get(project_name=proj.project_name)
+
+        new_tag = Tags_projects(p_tag_name = t, tag=tag)
+        new_tag.save()
+        return redirect(reverse('project_page', args=[project_name]))
+
+
         
     # here we finally solve the instance problem. So check it for future reference
    

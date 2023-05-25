@@ -49,13 +49,15 @@ class Pcomments(models.Model):
     def __str__(self):
         return str(self.username)
      
-
 class Tags_projects(models.Model):
-     project_name = models.ForeignKey(Projects,null=True,on_delete=models.CASCADE)
+    
+    p_tag_name = models.ForeignKey(Projects,null=True,on_delete=models.CASCADE)
+    tag = models.CharField(max_length=100,null=False,default='None')
+    
+    
+    def __str__(self):
+        return str(self.p_tag_name)
 
-     tag = models.CharField(max_length=100,null=False,default='None')
-     def __str__(self):
-            return self.project_name
      
 
 
@@ -67,24 +69,24 @@ class Tags_projects(models.Model):
 
 
 
-class Tags_projects(models.Model):
-     def __str__(self):
-            return self.first_name+" "+self.last_name
+# class Tags_projects(models.Model):
+#      def __str__(self):
+#             return self.first_name+" "+self.last_name
      
-class Tags_projects(models.Model):
-     def __str__(self):
-            return self.first_name+" "+self.last_name
+# class Tags_projects(models.Model):
+#      def __str__(self):
+#             return self.first_name+" "+self.last_name
      
-class Tags_projects(models.Model):
-     def __str__(self):
-            return self.first_name+" "+self.last_name
+# class Tags_projects(models.Model):
+#      def __str__(self):
+#             return self.first_name+" "+self.last_name
      
-class Tags_projects(models.Model):
-     def __str__(self):
-            return self.first_name+" "+self.last_name
+# class Tags_projects(models.Model):
+#      def __str__(self):
+#             return self.first_name+" "+self.last_name
      
-class Tags_projects(models.Model):
-     def __str__(self):
-            return self.first_name+" "+self.last_name
+# class Tags_projects(models.Model):
+#      def __str__(self):
+#             return self.first_name+" "+self.last_name
      
 

@@ -64,7 +64,7 @@
                               <textarea class="form-control" id="comment" name="comment" rows="4"   style="background: #fff;"></textarea>
                             
                              
-                                <button type="submit" class="btn btn-primary btn-sm">Post comment</button>
+                                <button type="submit" name='com' class="btn btn-primary btn-sm">Post comment</button>
                                 
                               
                             </form>
@@ -111,9 +111,17 @@
                     <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
                   </a>
                   <div class="list-group-item list-group-item-action py-3 lh-sm">
-                  <div class="d-flex w-100 align-items-center justify-content-between">
-                    <strong class="mb-1">TAGs</strong>
-                    <small class="text-body-secondary">Tues</small>
+                  <div class="">
+                    <strong class="mb-1 ">TAGs</strong>
+                    <div class="py-1">#chess</div>
+                    <br>                    
+                    <form method="post" action=""> 
+                        {% csrf_token %}                
+                    <input type="text" id="tag" name="tag" value="{{tag}}" class="form-control " />
+                    <br>                  
+                    
+                    <button class="btn btn-primary" name='tags' type="submit">Add Tag</button>
+                    </form>   
                   </div>
                   <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                  
                 </div>

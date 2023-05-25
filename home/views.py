@@ -55,7 +55,7 @@ def projects(request):
     if request.method=='POST':
         
         comment = request.POST.get('comment')
-        print(comment)
+        # print(comment)
 
         user_comment = request.user
 
@@ -89,11 +89,17 @@ def register(request):
     else:
          return render(request,'register.html')
 def gallery(request):
-    return render(request,'gallery.html')
+    proj_gal = Projects.objects.all()
+    context={
+        'proj_gal':proj_gal
+
+    }
+    return render(request,'gallery.html', context)
 def support(request):
     return render(request,'support.html')
 def about(request):
     return render(request,'about.html')
+
 
 
 def create_project(request):
@@ -107,3 +113,33 @@ def create_project(request):
         return redirect('/')
     else:
         return render(request,'create_project.html')
+
+
+def project_page(request,project_name):
+
+    proj = Projects.objects.filter(project_name=project_name).first()
+    print('Archit')
+    comm = Pcomments.objects.filter(pname__project_name=project_name)   #Doubt Field ‘id’ expected a number but got ‘Free’  link - In this updated code, pname__project_name represents the lookup condition where project_name matches the project_name field in the related Projects object.Please make sure that the Pcomments model has a field named pname that refers to the Projects model using a ForeignKey or similar relationship. Additionally, ensure that project_name contains the desired project name value for the lookup.
+    # print(comm)
+    print('Archit2')
+    context = {
+        'proj':proj,
+        'comm':comm
+    }
+    
+
+    print(proj.project_name)
+    if request.method=='POST':        
+        comment = request.POST.get('comment')
+        # print(comment)
+
+        p = Projects.objects.get(project_name=proj.project_name)
+        print(p,' Archit')
+        user_comment = request.user
+        new_comment = Pcomments(username=user_comment,comment=comment,date = datetime.date.today(), pname = p)
+        new_comment.save()
+
+    # here we finally solve the instance problem. So check it for future reference
+   
+
+    return render(request,'project_page.html', context)

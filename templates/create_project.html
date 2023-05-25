@@ -3,11 +3,11 @@
 {% block body %}
 <center>
     <h1>Create Project</h1>
-    <br /><br />
+    <br /><br/>
     <div class="container ">
         <div class="row mt-5 " >
             <div class="col-lg-4 border rounded bg-success m-auto">
-                <h2 class="text-center pt-3">Signup Now</h2>
+                <h2 class="text-center pt-3">Enter Project Details</h2>
                 <p class="text-center text-muted lead">It's Free and Takes a Minute</p>
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -33,7 +33,7 @@
                         <input type="email" id="email" name="email" value="{{email}}" class="form-control" placeholder="Email" />
                     </div> {% endcomment %}
 
-                    <div class="input-group mb-3"><input type="file" id="image" name="image" value="{{image}}" ></div>
+                    <div class="input-group mb-3"><input type="file" id="p_image" name="p_image" value="{{p_image}}" ></div>
 
                     <!-- <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-book"></i></span>

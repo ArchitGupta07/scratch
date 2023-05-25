@@ -14,8 +14,15 @@ def index(request):
 
    
 
-    profile = Profiles.objects.get(username = request.user)
-    return render(request,'index.html',{'profile':profile})
+    profile = Profiles.objects.get(username = request.user) 
+
+    project = Projects.objects.all()
+    context ={
+        'profile':profile,
+        'project':project
+        }
+    
+    return render(request,'index.html',context)
 
 def loginUser(request):
 
@@ -46,11 +53,13 @@ def logoutUser(request):
 def projects(request):  
 
     if request.method=='POST':
-        username = request.user
+        
         comment = request.POST.get('comment')
         print(comment)
 
-        new_comment = Pcomments(username=username,comment=comment,date = datetime.date.today())
+        user_comment = request.user
+
+        new_comment = Pcomments(username=user_comment,comment=comment,date = datetime.date.today())
         new_comment.save()
 
     
@@ -85,5 +94,16 @@ def support(request):
     return render(request,'support.html')
 def about(request):
     return render(request,'about.html')
+
+
 def create_project(request):
-    return render(request,'create_project.html')
+    if request.method=='POST':        
+
+        project_name = request.POST.get('project_name')
+        project_notes = request.POST.get('project_notes')
+        p_image = request.FILES.get('p_image')
+        new_project = Projects(project_name=project_name,project_notes=project_notes,p_image=p_image,p_creator = request.user)
+        new_project.save()
+        return redirect('/')
+    else:
+        return render(request,'create_project.html')

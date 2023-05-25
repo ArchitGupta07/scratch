@@ -47,11 +47,15 @@
         <div class="col-xs-6">
           <div class="text-center">Sample Projects</div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              {% for projects in project  %}
                 <div class="col">
                   <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/>
+                      <img class="img-fluid img-responsive fit-image" src="{{projects.p_image.url}}"  alt="">
+                    </svg>
                     <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <h5 class="card-text">{{projects.project_name}}</h5>
+                      <p class="card-text">{{projects.project_notes}}</p>
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                           <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
@@ -62,6 +66,7 @@
                     </div>
                   </div>
                 </div>
+                {% endfor %}
                 <div class="col">
                   <div class="card shadow-sm">
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
@@ -190,8 +195,5 @@
         </div>
     </div>
 </div>
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-            
-<script src="sidebars.js"></script>
 
 {% endblock body %}

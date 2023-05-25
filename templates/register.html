@@ -19,11 +19,11 @@
         <h1>Welcome to Scratch. Register Yourself</h1>
         <br /><br />
         <div class="container ">
-            <div class="row mt-5">
-                <div class="col-lg-4 bg-success m-auto">
+            <div class="row mt-5 " >
+                <div class="col-lg-4 border rounded bg-success m-auto">
                     <h2 class="text-center pt-3">Signup Now</h2>
                     <p class="text-center text-muted lead">It's Free and Takes a Minute</p>
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa fa-user"></i></span>
@@ -46,6 +46,8 @@
                                     class="fa fa-envelope"></i></span>
                             <input type="email" id="email" name="email" value="{{email}}" class="form-control" placeholder="Email" />
                         </div>
+
+                        <div class="input-group mb-3"><input type="file" id="image" name="image" value="{{image}}" ></div>
 
                         <!-- <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa fa-book"></i></span>

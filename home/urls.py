@@ -13,4 +13,6 @@ urlpatterns = [
     path('support', views.support, name="support"),
     path('about', views.about, name="about"),
     path('register', views.register, name="register"),
+    path('create_project', views.create_project, name="create_project"),
+
 ]

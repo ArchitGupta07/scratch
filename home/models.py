@@ -8,6 +8,7 @@ from django.db import models
 class Projects(models.Model):
     project_name = models.CharField(max_length=100, null=False)
     project_notes = models.CharField(max_length=500,default='None')
+    p_image = models.ImageField(upload_to="images/",default='None')
     # comments = models.CharField(max_length=100,default='None')
     # tags = models.CharField(max_length=100,default='None')
     def __str__(self):
@@ -23,11 +24,9 @@ class Gallery(models.Model):
 class Profiles(models.Model):
     first_name = models.CharField(max_length=100,null=False)
     last_name = models.CharField(max_length=100,null=False,default='None')
-    username = models.CharField(max_length=100,null=False)
-    
+    username = models.CharField(max_length=100,null=False)    
     password = models.CharField(max_length=100,null=False)
     location = models.CharField(max_length=100, default='None')
-
     image = models.ImageField(upload_to="static/images",default='None')
 
     # friends = models.CharField(max_length=100,null=False,default='None')

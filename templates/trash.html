@@ -1,0 +1,102 @@
+<center>
+    <h1>Welcome to Scratch. Register Yourself</h1>
+    <br/><br/>
+    
+    <form action="" method="POST">
+        {% csrf_token %}  
+        
+        
+    
+    
+        <input type="submit" value="Register" class="btn btn-success ">
+    
+        
+         
+    
+    </form>
+    </center>
+
+
+
+
+{% extends 'base.html' %}
+{% block title %}services{% endblock title %}
+{% block body %}
+
+{% endblock body %}
+
+
+
+
+Might be used in projects.html
+
+
+{% extends 'base.html' %}
+{% block title %}services{% endblock title %}
+{% block body %}
+<center>
+    <h1>Create Project</h1>
+    <br /><br />
+    <div class="container ">
+        <div class="row mt-5 " >
+            <div class="col-lg-4 border rounded bg-success m-auto">
+                <h2 class="text-center pt-3">Signup Now</h2>
+                <p class="text-center text-muted lead">It's Free and Takes a Minute</p>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        <input type="text" id="first_name" class="form-control" name="first_name" value="{{first_name}}" placeholder="First Name" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        <input type="text" id="last_name" name="last_name" value="{{last_name}}" class="form-control" placeholder="Last Name" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        <input type="text" id="username" name="username" value="{{username}}" class="form-control" placeholder="Username" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-location-arrow"></i></span>
+                        <input type="text" id="location" name="location" value="{{location}}" class="form-control" placeholder="Location" />
+                    </div>
+
+                    <div class="input-group mb-3"> <span class="input-group-text"><i
+                                class="fa fa-envelope"></i></span>
+                        <input type="email" id="email" name="email" value="{{email}}" class="form-control" placeholder="Email" />
+                    </div>
+
+                    <div class="input-group mb-3"><input type="file" id="image" name="image" value="{{image}}" ></div>
+
+                    <!-- <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-book"></i></span>
+                        <input style="height:100px" type="text" class="form-control form-control-lg mb-100" placeholder="Description" />
+                    </div> -->
+                    <!-- <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-book"></i></span>
+                        <textarea class="form-control form-control-lg" value="{{description}}" name="" id="description" ></textarea>
+
+                    </div> -->
+                   
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                        <input type="text" class="form-control" name="password" value="{{password}}" id="password" placeholder="Password" />
+                    </div>
+                    <input type="submit" value="Register" class="btn btn-success ">
+                </form>
+</center>
+
+{% endblock body %}
+
+
+
+////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+

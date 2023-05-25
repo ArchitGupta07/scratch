@@ -67,9 +67,10 @@ def register(request):
         location = request.POST.get('location')
         email = request.POST.get('email')
         password = request.POST.get('password')
+        image = request.FILES.get('image')
         # description = request.POST.get('description')
         # username = request.POST.get('username')
-        new_user = Profiles(first_name=first_name,last_name=last_name,username=username,location=location,password=password,email=email)
+        new_user = Profiles(first_name=first_name,last_name=last_name,username=username,location=location,password=password,email=email,image=image)
         new_user.save()
         user = User.objects.create_user(username=username,email=email, password=password)
         user.save()
@@ -84,3 +85,5 @@ def support(request):
     return render(request,'support.html')
 def about(request):
     return render(request,'about.html')
+def create_project(request):
+    return render(request,'create_project.html')

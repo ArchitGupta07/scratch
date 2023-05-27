@@ -110,8 +110,10 @@ def create_project(request):
 
         project_name = request.POST.get('project_name')
         project_notes = request.POST.get('project_notes')
+        project_link = request.POST.get('project_link')
         p_image = request.FILES.get('p_image')
-        new_project = Projects(project_name=project_name,project_notes=project_notes,p_image=p_image,p_creator = request.user)
+
+        new_project = Projects(project_name=project_name,project_notes=project_notes,p_image=p_image,p_creator = request.user, project_link=project_link)
         new_project.save()
         return redirect('/')
     else:
@@ -125,9 +127,12 @@ def project_page(request,project_name):
     comm = Pcomments.objects.filter(pname__project_name=project_name)   #Doubt Field ‘id’ expected a number but got ‘Free’  link - In this updated code, pname__project_name represents the lookup condition where project_name matches the project_name field in the related Projects object.Please make sure that the Pcomments model has a field named pname that refers to the Projects model using a ForeignKey or similar relationship. Additionally, ensure that project_name contains the desired project name value for the lookup.
     # print(comm)
     # print('Archit2')
+
+    tagg = Tags_projects.objects.filter(p_tag_name__project_name = project_name)
     context = {
         'proj':proj,
-        'comm':comm
+        'comm':comm,
+        'tagg':tagg
     }
     
 

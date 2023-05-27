@@ -86,13 +86,15 @@
                 <div class="list-group list-group-flush border-bottom scrollarea">
                   <a href="#" class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
                     <div class="d-flex w-100 align-items-center justify-content-between">
-                      <strong class="mb-1">SampleProjectsTeam</strong>
+                      <strong class="mb-1">DownLoad This Project</strong>
                       <small>Wed</small>
                     </div>
                     <div class="col-10 mb-1 small">
                       
-                      <li>Name: {{ profile.first_name }} {{ profile.last_name }} </li>
-                      <li>Location: {{ profile.location }}</li>
+                      <!-- <li>Name: {{ profile.first_name }} {{ profile.last_name }} </li>
+                      <li>Location: {{ profile.location }}</li> -->
+
+                      Download the Components of {{proj.project_name}} and Open it in Scratch
                       
                     </div>
                   </a>
@@ -101,7 +103,7 @@
                       <strong class="mb-1">Friends</strong>
                       <small class="text-body-secondary">Tues</small>
                     </div>
-                    <div class="col-10 mb-1 small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus similique quae autem hic deserunt deleniti, aspernatur voluptas sit nulla a pariatur impedit dicta ullam optio dolores. Autem voluptatibus temporibus nobis.</div>
+                    <div class="col-10 mb-1 small">{{proj.project_notes}}</div>
                   </a>
                   <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
                     <div class="d-flex w-100 align-items-center justify-content-between">
@@ -110,10 +112,14 @@
                     </div>
                     <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
                   </a>
-                  <div class="list-group-item list-group-item-action py-3 lh-sm">
+                  <div class="list-group-item py-3 lh-sm">
                   <div class="">
                     <strong class="mb-1 ">TAGs</strong>
-                    <div class="py-1">#chess</div>
+                    <div class="py-1">
+                      {% for t in tagg  %}
+                      #{{t.tag}} 
+                      {% endfor %}
+                    </div>
                     <br>                    
                     <form method="post" action=""> 
                         {% csrf_token %}                
@@ -123,7 +129,18 @@
                     <button class="btn btn-primary" name='tags' type="submit">Add Tag</button>
                     </form>   
                   </div>
-                  <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                  
+                  <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                   -->
+                </div>
+                <div class="list-group-item  py-3 lh-sm">
+                  <div class="">
+                    <strong class="mb-1 ">Link To This Project</strong>
+                    <div class="py-1">
+                      <a href="{{proj.project_link}}">{{proj.project_link}}</a>
+                      
+                    </div>
+                    <br>            
+                  </div>
+                  <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                   -->
                 </div>
                 </div>
               </div>    

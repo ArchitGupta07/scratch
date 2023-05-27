@@ -17,9 +17,13 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
-                        <input type="text" id="project_notes" name="project_notes" value="{{project_notes}}" class="form-control" placeholder="Project Notes " />
+                        <input type="text" id="project_notes" class="form-control" name="project_notes" value="{{project_notes}}" placeholder="Project Notes" />
                     </div>
-                    {% comment %} <div class="input-group mb-3">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        <input type="url" id="project_link" name="project_link" value="{{project_link}}" class="form-control" placeholder="Github Link" />
+                    </div>
+                    <!-- {% comment %} <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                         <input type="text" id="username" name="username" value="{{username}}" class="form-control" placeholder="Username" />
                     </div>
@@ -31,7 +35,7 @@
                     <div class="input-group mb-3"> <span class="input-group-text"><i
                                 class="fa fa-envelope"></i></span>
                         <input type="email" id="email" name="email" value="{{email}}" class="form-control" placeholder="Email" />
-                    </div> {% endcomment %}
+                    </div> {% endcomment %} -->
 
                     <div class="input-group mb-3"><input type="file" id="p_image" name="p_image" value="{{p_image}}" ></div>
 

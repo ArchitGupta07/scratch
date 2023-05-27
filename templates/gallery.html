@@ -21,9 +21,11 @@
                     <div class="d-flex justify-content-between align-items-center">
                       <form method="post" action="">
                         {% csrf_token %}
+                        
                       <div class="btn-group">
-                        <a class="btn btn-primary" name ="view" href="project_page/{{p.project_name}}" role="button">View</a>
-                        <button type="submit" name='fav' class="btn btn-sm btn-outline-secondary">Add to Favourites</button>
+                        <input type="hidden" name="proj_name" value ={{p.project_name}} >
+                        <button type="submit" class="btn btn-primary" name ="view" >View</button>
+                        <button type="submit" name='fav' class="btn btn-sm btn-outline-secondary">Edit</button>
                       </div>
                       </form>
 

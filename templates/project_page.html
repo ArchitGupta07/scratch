@@ -150,7 +150,14 @@
                       {% csrf_token %}             
                     <br>               
                     <button class="btn btn-primary" name='fav' type="submit">Add To Favourites</button>
-                    <button class="btn btn-primary" name='like' type="submit">Like</button>
+                    <input type="hidden" name="proj_name" value ={{proj.project_name}} >
+                    {% if user not in proj.liked.all %}
+                    <button class="btn btn-primary positive" name='like' type="submit">Like</button>
+                    </form>   
+                    {% else %}
+                    <button class="btn btn-primary negative" name='like' type="submit">Unlike</button>
+                    {% endif %}
+                    <strong>{{proj.liked.all.count}} Likes</strong>
                     </form>   
                   </div>
                   <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                   -->

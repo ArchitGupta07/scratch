@@ -97,6 +97,14 @@ class Lovers(models.Model):
     
 
      
+class Viewers(models.Model):
+    pv_name = models.ForeignKey(Projects,max_length=100, null=True,on_delete=models.CASCADE)
+    viewer =  models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE)
+    def __str__(self):
+            return str(self.pv_name)+ " " + str(self.viewer)
+     
+
+
 # class Tags_projects(models.Model):
 #      def __str__(self):
 #             return self.first_name+" "+self.last_name

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate
 from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects,Favourites
-from .models import Lovers
+from .models import Lovers,Viewers
 
 from django.contrib.auth.models import User
 from django.db.models import F
@@ -94,11 +94,17 @@ def gallery(request):
     context={
         'proj_gal':proj_gal
     }
-    if 'fav' in request.POST: 
-        # new_fav = Favourites(project_name = proj_ga;)
+    if 'view' in request.POST: 
 
-        
-        return redirect("/gallery")
+        p = request.POST.get('proj_name')
+        a = Projects.objects.get(project_name=p)
+        print(p, 'check')
+
+        new_view = Viewers(pv_name = a, viewer = request.user)
+        new_view.save()
+        # new_fav = Favourites(project_name = proj_ga;)        
+        # return redirect("/gallery")
+        return redirect(reverse('project_page', args=[p]))
     
 
 
@@ -171,10 +177,21 @@ def project_page(request,project_name):
         return redirect(reverse('project_page', args=[project_name]))
     
     elif 'like' in request.POST:
+        user = request.user
         l =  Projects.objects.get(project_name=proj.project_name)
-        new_like = Lovers(p_name = l,lover = request.user )
-        new_like.save()
-        Projects.objects.filter(project_name=project_name).update(likes = F('likes')+1)
+        if user in l.liked.all():
+            l.liked.remove(user)
+        else:
+            l.liked.add(user)
+
+        like, created = Lovers.objects.get_or_create(lover=user,p_name = l)
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:like.value = 'Like'    
+
+        
         return redirect(reverse('project_page', args=[project_name]))
     
     return render(request,'project_page.html', context)

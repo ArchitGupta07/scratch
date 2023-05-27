@@ -142,6 +142,19 @@
                   </div>
                   <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                   -->
                 </div>
+                <div class="list-group-item py-3 lh-sm">
+                  <div class="">                   
+                    
+                    <br>                    
+                    <form method="post" action=""> 
+                      {% csrf_token %}             
+                    <br>               
+                    <button class="btn btn-primary" name='fav' type="submit">Add To Favourites</button>
+                    <button class="btn btn-primary" name='like' type="submit">Like</button>
+                    </form>   
+                  </div>
+                  <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                   -->
+                </div>
                 </div>
               </div>    
         </div>

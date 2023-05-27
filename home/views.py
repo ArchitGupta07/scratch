@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate
-from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects
+from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects,Favourites
+from .models import Lovers
 
 from django.contrib.auth.models import User
+from django.db.models import F
 from django.contrib.auth import logout, login
 import datetime
 
@@ -11,17 +13,13 @@ def index(request):
     if request.user.is_anonymous:
         return redirect('/login')
     
-
-   
-
     profile = Profiles.objects.get(username = request.user) 
-
     project = Projects.objects.all()
+
     context ={
         'profile':profile,
         'project':project
-        }
-    
+        }    
     return render(request,'index.html',context)
 
 def loginUser(request):
@@ -39,15 +37,16 @@ def loginUser(request):
             else:
                 return render(request,'login.html')
     if 'up' in request.POST:
-        return redirect('/register')
-
-        
+        return redirect('/register')   
 
     return render(request,'login.html')
 
 def logoutUser(request):
    logout(request)
    return redirect("/login")
+
+def home(request):
+   return render(request,'home.html')
 
 
 def projects(request):  
@@ -95,6 +94,14 @@ def gallery(request):
     context={
         'proj_gal':proj_gal
     }
+    if 'fav' in request.POST: 
+        # new_fav = Favourites(project_name = proj_ga;)
+
+        
+        return redirect("/gallery")
+    
+
+
     return render(request,'gallery.html', context)
 
 
@@ -134,9 +141,9 @@ def project_page(request,project_name):
         'comm':comm,
         'tagg':tagg
     }
-    
 
-    print(proj.project_name)
+
+   
     if 'com' in request.POST:       
         comment = request.POST.get('comment')
         # print(comment)
@@ -154,11 +161,20 @@ def project_page(request,project_name):
 
         new_tag = Tags_projects(p_tag_name = t, tag=tag)
         new_tag.save()
-        return redirect(reverse('project_page', args=[project_name]))
-
-
-        
+        return redirect(reverse('project_page', args=[project_name]))        
     # here we finally solve the instance problem. So check it for future reference
-   
 
+    elif 'fav' in request.POST:
+        f =  Projects.objects.get(project_name=proj.project_name)
+        new_fav = Favourites(project_name = f, curator = request.user)
+        new_fav.save()
+        return redirect(reverse('project_page', args=[project_name]))
+    
+    elif 'like' in request.POST:
+        l =  Projects.objects.get(project_name=proj.project_name)
+        new_like = Lovers(p_name = l,lover = request.user )
+        new_like.save()
+        Projects.objects.filter(project_name=project_name).update(likes = F('likes')+1)
+        return redirect(reverse('project_page', args=[project_name]))
+    
     return render(request,'project_page.html', context)

@@ -20,6 +20,22 @@ def index(request):
         'profile':profile,
         'project':project
         }    
+    if 'view' in request.POST: 
+
+        p = request.POST.get('proj_name')
+        a = Projects.objects.get(project_name=p)
+        print(p, 'check')
+        user = request.user
+        
+        
+        if user not in a.viewed.all():
+            a.viewed.add(user)
+            new_view = Viewers(pv_name = a, viewer = request.user)
+            new_view.save()
+            return redirect(reverse('project_page', args=[p]))
+        else:            
+            return redirect(reverse('project_page', args=[p]))
+        
     return render(request,'index.html',context)
 
 def loginUser(request):
@@ -90,7 +106,9 @@ def register(request):
     
 
 def gallery(request):
-    proj_gal = Projects.objects.all()
+    # proj_gal = Projects.objects.all()
+    proj_gal = Projects.objects.all().exclude(p_creator = request.user)
+    
     context={
         'proj_gal':proj_gal
     }
@@ -99,12 +117,17 @@ def gallery(request):
         p = request.POST.get('proj_name')
         a = Projects.objects.get(project_name=p)
         print(p, 'check')
-
-        new_view = Viewers(pv_name = a, viewer = request.user)
-        new_view.save()
-        # new_fav = Favourites(project_name = proj_ga;)        
-        # return redirect("/gallery")
-        return redirect(reverse('project_page', args=[p]))
+        user = request.user
+        
+        
+        if user not in a.viewed.all():
+            a.viewed.add(user)
+            new_view = Viewers(pv_name = a, viewer = request.user)
+            new_view.save()
+            return redirect(reverse('project_page', args=[p]))
+        else:    
+        
+            return redirect(reverse('project_page', args=[p]))
     
 
 
@@ -179,6 +202,7 @@ def project_page(request,project_name):
     elif 'like' in request.POST:
         user = request.user
         l =  Projects.objects.get(project_name=proj.project_name)
+        
         if user in l.liked.all():
             l.liked.remove(user)
         else:

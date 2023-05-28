@@ -31,7 +31,10 @@ class Projects(models.Model):
 
     project_link = models.URLField(null = True)
     liked = models.ManyToManyField(User, default = None, blank=True, related_name='liked')
+    viewed = models.ManyToManyField(User, default = None, blank=True, related_name='viewed')
     # likes = models.IntegerField(default=0)
+
+    # Tip:- use USER in foreign key if you wanted use the current user of a particular page. This will save you from errors like " Field 'id' expected a number "
     
     def __str__(self):
         return self.project_name
@@ -39,6 +42,10 @@ class Projects(models.Model):
     @property
     def num_likes(self):
         return self.liked.all().count()
+    
+    @property
+    def num_views(self):
+        return self.viewed.all().count()
 
     # comments = models.CharField(max_length=100,default='None')
     # tags = models.CharField(max_length=100,default='None')
@@ -46,8 +53,6 @@ class Projects(models.Model):
 
 class Gallery(models.Model):
     project_name = models.ForeignKey(Projects,max_length=100, null=True,on_delete=models.CASCADE)
-    
-
     def __str__(self):
         return self.project_name
 

@@ -157,7 +157,7 @@
                     {% else %}
                     <button class="btn btn-primary negative" name='like' type="submit">Unlike</button>
                     {% endif %}
-                    <strong>{{proj.liked.all.count}} Likes</strong>
+                    <strong><!-- {{proj.liked.all.count}} --> {{proj.num_likes}}Likes</strong>
                     </form>   
                   </div>
                   <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                   -->

@@ -57,10 +57,14 @@
                       <h5 class="card-text">{{projects.project_name}}</h5>
                       <p class="card-text">{{projects.project_notes}}</p>
                       <div class="d-flex justify-content-between align-items-center">
+                        <form method="post" action="">
+                          {% csrf_token %}
                         <div class="btn-group">
-                          <a class="btn btn-primary" href="project_page/{{projects.project_name}}" role="button">View</a>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                          <input type="hidden" name="proj_name" value ={{projects.project_name}} >
+                        <button type="submit" class="btn btn-primary" name ="view" >View</button>
+                        <button type="submit" name='fav' class="btn btn-sm btn-outline-secondary">Edit</button>
                         </div>
+                      </form>
                         <small class="text-body-secondary">9 mins</small>
                       </div>
                     </div>

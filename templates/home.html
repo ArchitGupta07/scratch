@@ -60,61 +60,15 @@
                   </div>
                 </div>
               </div>
-                {% endfor %}
-                
+                {% endfor %}               
         
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-body-secondary">9 mins</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-body-secondary">9 mins</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-body-secondary">9 mins</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
     
         <div class="col-xs-6 bg-secondary p-3 border rounded">
-            <div class="text-center">Projects Selected by Archit</div>
+            <div class="text-center"><h4>Projects Created by {{random_row.p_creator}}</h4></div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              {% for p in proj_gal  %}
+              {% for p in random_proj  %}
               <div class="col">
                 <div class="card shadow-sm">
                   <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/>
@@ -138,7 +92,7 @@
                 {% endfor %}
                 
         
-                <div class="col">
+                <!-- <div class="col">
                   <div class="card shadow-sm">
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
                     <div class="card-body">
@@ -182,7 +136,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
         </div>
@@ -198,36 +152,91 @@
                     <span class="fs-5 fw-semibold">List group</span>
                 </a> -->
                 <div class="list-group list-group-flush border-bottom scrollarea border rounded">
-                    <a href="#" class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                            <strong class="mb-1">SampleProjectsTeam</strong>
-                            <!-- <small>Wed</small> -->
-                        </div>
-                        <div class="col-10 mb-1 small">
+                    <!-- <div class="list-group-item py-3 lh-sm">
+                      <div class="d-flex w-100 align-items-center justify-content-between">
+                        <strong class="mb-1">SampleProjectsTeam</strong>
+                       <small>Wed</small> 
+                    </div>
+                    <div class="col-10 mb-1 small">
 
-                            <li>Name: {{ profile.first_name }} {{ profile.last_name }} </li>
-                            <li>Location: {{ profile.location }}</li>
+                        <li>Name: {{ profile.first_name }} {{ profile.last_name }} </li>
+                        <li>Location: {{ profile.location }}</li>
 
+                    </div>
+                    </div> -->
+                        
+                    
+                    
+                    <div class="list-group-item py-3 lh-sm">
+                      <div class="">
+                        <strong class="mb-1 ">ScratchED</strong>
+                        <br> 
+                        <br>
+                        <div class="d-flex gap-3 flex-nowrap">
+                          <img class="rounded-sqaure shadow-1-strong me-3"
+                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60"
+                              height="60" />
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, officiis?</p>
                         </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                            <strong class="mb-1">Friends</strong>
-                            <!-- <small class="text-body-secondary">Tues</small> -->
+                        
+                        <div class="py-1">
+                          <a href="https://discord.gg/EAH3S2Ut" class="text-decoration-none">
+                            Find Out More
+                            </a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+                        </div>                           
+                      </div>
+                      <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                   -->
+                    </div>
+                    <div class="list-group-item py-3 lh-sm">
+                      <div >
+                        <strong class="mb-1 ">Video Tutorials</strong>
+                        <br>
+                        <br>
+                        <div class="d-flex gap-3 flex-nowrap">
+                          <img class="rounded-sqaure shadow-1-strong me-3"
+                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60"
+                              height="60" />
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, officiis?</p>
                         </div>
-                        <div class="col-10 mb-1 small">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Voluptatibus similique quae autem hic deserunt deleniti, aspernatur voluptas sit nulla a
-                            pariatur impedit dicta ullam optio dolores. Autem voluptatibus temporibus nobis.</div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                            <strong class="mb-1">Gallery Description</strong>
-                            <!-- <small class="text-body-secondary">Tues</small> -->
+
+                        <div class="py-1">
+                          <!-- <a href="#" class="text-decoration-none"> -->
+                            <a href="https://www.youtube.com/watch?v=JxzZxdht-XY" class="text-decoration-none">Find Out More</a>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>            </svg>
+                        </div>  
+
+                         
+                      </div>
+                      <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                   -->
+                    </div>
+                    <div class="list-group-item py-3 lh-sm">
+                      <div class="">
+                        <strong class="mb-1 ">Scratch Tours</strong>
+                        <br> 
+                        <br>
+                        <div class="d-flex gap-3 flex-nowrap">
+                          <img class="rounded-sqaure shadow-1-strong me-3"
+                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60"
+                              height="60" />
+                        <p>New to Scratch?
+                          Take a Tour to see what Scratchers are creating
+                        </p>
                         </div>
-                        <div class="col-10 mb-1 small">
-                          We are trying to figure put which new projects should go in the sample projects library. This is a set of projects not made by us that we are considering fro inclusion.
-                        </div>
-                    </a>
+                        
+                        <!-- <div class="py-1">
+                          <a href="#" class="text-decoration-none">
+                            Find Out More
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+                        </div>                            -->
+                      </div>
+                      <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                   -->
+                    </div>
 
                 </div>
             </div>

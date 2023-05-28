@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.db.models.functions import Random
 from django.contrib.auth import authenticate
 from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects,Favourites,Featured
 from .models import Lovers,Viewers
@@ -78,9 +79,17 @@ def home(request):
     project_names = [entry.project_n for entry in s]
 
     d = Projects.objects.filter(project_name__in=project_names)
+
+    random_row = Projects.objects.annotate(random_number=Random()).order_by('random_number').first()
+    
+    random_proj = Projects.objects.filter(p_creator = random_row.p_creator)
     context={
-        'd':d
+        'd':d,
+        'random_row':random_row,
+        'random_proj':random_proj
+        
     }  
+
 
     return render(request,'home.html', context)
 
@@ -126,6 +135,9 @@ def register(request):
          return render(request,'register.html')
     
 
+
+
+
 def gallery(request):
     # proj_gal = Projects.objects.all()
     proj_gal = Projects.objects.all().exclude(p_creator = request.user)
@@ -155,10 +167,17 @@ def gallery(request):
     return render(request,'gallery.html', context)
 
 
+
+
+
 def support(request):
     return render(request,'support.html')
+
+
+
 def about(request):
     return render(request,'about.html')
+
 
 
 
@@ -175,6 +194,9 @@ def create_project(request):
         return redirect('/')
     else:
         return render(request,'create_project.html')
+
+
+
 
 
 def project_page(request,project_name):

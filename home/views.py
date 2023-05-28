@@ -89,8 +89,21 @@ def home(request):
         'random_proj':random_proj
         
     }  
+    if 'view' in request.POST: 
 
-
+        p = request.POST.get('proj_name')
+        a = Projects.objects.get(project_name=p)
+        print(p, 'check')
+        user = request.user
+        
+        
+        if user not in a.viewed.all():
+            a.viewed.add(user)
+            new_view = Viewers(pv_name = a, viewer = request.user)
+            new_view.save()
+            return redirect(reverse('project_page', args=[p]))
+        else:            
+            return redirect(reverse('project_page', args=[p]))
     return render(request,'home.html', context)
 
 

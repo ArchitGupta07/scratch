@@ -28,11 +28,14 @@ class Projects(models.Model):
     project_notes = models.CharField(max_length=500,default='None')
     p_image = models.ImageField(upload_to="images/",default='None')
     p_creator = models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE,related_name='p_creator')
-
+    date = models.DateField(null=True,default=None)
     project_link = models.URLField(null = True)
     liked = models.ManyToManyField(User, default = None, blank=True, related_name='liked')
     viewed = models.ManyToManyField(User, default = None, blank=True, related_name='viewed')
+    downloaded = models.ManyToManyField(User, default = None, blank=True, related_name='downloaded')
+    tagged = models.ManyToManyField(User, default = None, blank=True, related_name='tagged')
     # likes = models.IntegerField(default=0)
+
 
     # Tip:- use USER in foreign key if you wanted use the current user of a particular page. This will save you from errors like " Field 'id' expected a number "
     
@@ -42,6 +45,13 @@ class Projects(models.Model):
     @property
     def num_likes(self):
         return self.liked.all().count()
+    @property
+    def num_down(self):
+        return self.downloaded.all().count()
+    
+    @property
+    def num_tags(self):
+        return self.tagged.all().count()
     
     @property
     def num_views(self):
@@ -70,6 +80,7 @@ class Tags_projects(models.Model):
     
     p_tag_name = models.ForeignKey(Projects,null=True,on_delete=models.CASCADE)
     tag = models.CharField(max_length=100,null=False,default='None')
+    tagger = models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE, default=None)
     
     
     def __str__(self):
@@ -79,7 +90,7 @@ class Tags_projects(models.Model):
 class Favourites(models.Model):
     project_name = models.ForeignKey(Projects,max_length=100, null=True,on_delete=models.CASCADE)
     # project_creator = models.ForeignKey(Projects,max_length=100, null=True,on_delete=models.CASCADE)
-    curator = models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE)
+    favorby = models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE)
     
 
     def __str__(self):
@@ -116,6 +127,18 @@ class Featured(models.Model):
     def __str__(self):
             return str(self.project_n)
 
+class Projects_text(models.Model):
+     def __str__(self):
+            return self.first_name+" "+self.last_name
+# class Tags_projects(models.Model):
+#      def __str__(self):
+#             return self.first_name+" "+self.last_name
+# class Tags_projects(models.Model):
+#      def __str__(self):
+#             return self.first_name+" "+self.last_name
+# class Tags_projects(models.Model):
+#      def __str__(self):
+#             return self.first_name+" "+self.last_name
 # class Tags_projects(models.Model):
 #      def __str__(self):
 #             return self.first_name+" "+self.last_name

@@ -2,7 +2,7 @@
 {% block title %}services{% endblock title %}
 {% block body %}
 
-<div class="container">
+<div class="container py-3">
     <div class="d-flex gap-8 ">
         <div>
             <div  class="flex-grow-1 col-xs-6">
@@ -16,11 +16,31 @@
                     </div>
                 </div>                
             </div>
+            <div>
+              <br>
+              
+              <img class="rounded-circle shadow-1-strong me-3"
+                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60"
+                              height="60" /> {{ proj.p_creator}} shared it on {{proj.date}}
+              <br>
+              <br>
+              Based on MyRedNeptunes's project
+              <br>
+              <br>
+
+              {{proj.num_views}} views, {{proj.num_tags}} taggers, {{proj.num_likes}} people love it, 1 remix by 1 person, 11 downloads, in 1 gallery
+              <br>
+              <br>
+
+              Love it?   Add to my favourites? Flag as inappropiate?
+
+
+            </div>
             <section style="background-color: #eee;">
                 <div class="container my-5 py-5">
                   <div class="row d-flex justify-content-center">
                     <div class="col-md-12 col-lg-10 col-xl-8">
-                      <div class="card">
+                      <div class="card w-100">
 
                         {% for c in comm  %}
                         <div class="card-body">
@@ -61,7 +81,7 @@
                             
                             <form method="POST" action="" >
                                 {% csrf_token %}
-                              <textarea class="form-control" id="comment" name="comment" rows="4"   style="background: #fff;"></textarea>
+                              <textarea class="form-control" id="comment" name="comment" rows="4" cols="100"  style="background: #fff;"></textarea>
                             
                              
                                 <button type="submit" name='com' class="btn btn-primary btn-sm">Post comment</button>
@@ -79,11 +99,8 @@
         </div>
         <div class=" pl-6 col-xs-6">
             <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary" style="width: 380px;">
-                <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
-                  <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-                  <span class="fs-5 fw-semibold">List group</span>
-                </a>
-                <div class="list-group list-group-flush border-bottom scrollarea">
+                
+                <div class="list-group list-group-flush border rounded scrollarea">
                   <a href="#" class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
                     <div class="d-flex w-100 align-items-center justify-content-between">
                       <strong class="mb-1">DownLoad This Project</strong>
@@ -100,18 +117,18 @@
                   </a>
                   <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
                     <div class="d-flex w-100 align-items-center justify-content-between">
-                      <strong class="mb-1">Friends</strong>
+                      <strong class="mb-1">Project Notes</strong>
                       <small class="text-body-secondary">Tues</small>
                     </div>
                     <div class="col-10 mb-1 small">{{proj.project_notes}}</div>
                   </a>
-                  <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
+                  <!-- <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
                     <div class="d-flex w-100 align-items-center justify-content-between">
                       <strong class="mb-1">Gallery</strong>
                       <small class="text-body-secondary">Tues</small>
                     </div>
                     <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-                  </a>
+                  </a> -->
                   <div class="list-group-item py-3 lh-sm">
                   <div class="">
                     <strong class="mb-1 ">TAGs</strong>
@@ -135,7 +152,7 @@
                   <div class="">
                     <strong class="mb-1 ">Link To This Project</strong>
                     <div class="py-1">
-                      <a href="{{proj.project_link}}">{{proj.project_link}}</a>
+                      <a href="{{proj.project_link}}">Download</a>
                       
                     </div>
                     <br>            

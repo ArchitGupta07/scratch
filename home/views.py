@@ -15,7 +15,7 @@ def index(request):
         return redirect('/login')
     
     profile = Profiles.objects.get(username = request.user) 
-    project = Projects.objects.all()
+    project = Projects.objects.filter(p_creator = request.user)
 
     context ={
         'profile':profile,
@@ -141,9 +141,10 @@ def register(request):
 def gallery(request):
     # proj_gal = Projects.objects.all()
     proj_gal = Projects.objects.all().exclude(p_creator = request.user)
-    
+    profile = Profiles.objects.get(username = request.user)
     context={
-        'proj_gal':proj_gal
+        'proj_gal':proj_gal,
+        'profile':profile
     }
     if 'view' in request.POST: 
 
@@ -229,7 +230,11 @@ def project_page(request,project_name):
         return redirect(reverse('project_page', args=[project_name]))
     elif 'tags' in request.POST:
         tag = request.POST.get('tag')
-        t = Projects.objects.get(project_name=proj.project_name)
+        t = Projects.objects.get(project_name=proj.project_name)       
+        user = request.user
+                
+        if user not in t.tagged.all():
+            t.tagged.add(user)          
 
         new_tag = Tags_projects(p_tag_name = t, tag=tag)
         new_tag.save()
@@ -238,7 +243,7 @@ def project_page(request,project_name):
 
     elif 'fav' in request.POST:
         f =  Projects.objects.get(project_name=proj.project_name)
-        new_fav = Favourites(project_name = f, curator = request.user)
+        new_fav = Favourites(project_name = f, favorby = request.user)
         new_fav.save()
         return redirect(reverse('project_page', args=[project_name]))
     
@@ -256,9 +261,11 @@ def project_page(request,project_name):
         if not created:
             if like.value == 'Like':
                 like.value = 'Unlike'
-            else:like.value = 'Like'    
+            else:like.value = 'Like'         
+        return redirect(reverse('project_page', args=[project_name]))
+    
 
-        
+    elif 'down' in request.POST:
         return redirect(reverse('project_page', args=[project_name]))
     
     return render(request,'project_page.html', context)

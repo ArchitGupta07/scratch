@@ -2,10 +2,10 @@
 {% block title %}services{% endblock title %}
 {% block body %}
 
-<div class="container">
+<div class="container py-3">
     <div class="d-flex gap-3 flex-nowrap">
         <div class="col-xs-6">
-            <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary" style="width: 380px;">
+            <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary border rounded" style="width: 380px;">
                 <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
                   <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
                   <span class="fs-5 fw-semibold">List group</span>
@@ -45,7 +45,7 @@
               
         </div>
         <div class="col-xs-6">
-          <div class="text-center">Sample Projects</div>
+          
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               {% for projects in project  %}
                 <div class="col">

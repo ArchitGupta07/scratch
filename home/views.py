@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.db.models.functions import Random
 from django.contrib.auth import authenticate
 from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects,Favourites,Featured
-from .models import Lovers,Viewers,Downloaders
+from .models import Lovers,Viewers,Downloaders, Friends
 
 from django.contrib.auth.models import User
 from django.db.models import F

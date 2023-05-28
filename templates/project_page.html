@@ -28,7 +28,7 @@
               <br>
               <br>
 
-              {{proj.num_views}} views, {{proj.num_tags}} taggers, {{proj.num_likes}} people love it, 1 remix by 1 person, 11 downloads, in 1 gallery
+              {{proj.num_views}} views, {{proj.num_tags}} taggers, {{proj.num_likes}} people love it, 1 remix by 1 person, {{proj.num_down}} downloads, in 1 gallery
               <br>
               <br>
 
@@ -40,7 +40,7 @@
                 <div class="container my-5 py-5">
                   <div class="row d-flex justify-content-center">
                     <div class="col-md-12 col-lg-10 col-xl-8">
-                      <div class="card w-100">
+                      <div class="card ">
 
                         {% for c in comm  %}
                         <div class="card-body">
@@ -152,7 +152,13 @@
                   <div class="">
                     <strong class="mb-1 ">Link To This Project</strong>
                     <div class="py-1">
-                      <a href="{{proj.project_link}}">Download</a>
+                      <form method="post" action = "">
+                        {% csrf_token %} 
+                        <button class="btn btn-primary"  name='down' type="submit">
+                            Download
+                        </button>
+                    </form>
+                      <!-- <a href="{{proj.project_link}}">Download</a> -->
                       
                     </div>
                     <br>            

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.db.models.functions import Random
 from django.contrib.auth import authenticate
 from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects,Favourites,Featured
-from .models import Lovers,Viewers
+from .models import Lovers,Viewers,Downloaders
 
 from django.contrib.auth.models import User
 from django.db.models import F
@@ -266,6 +266,18 @@ def project_page(request,project_name):
     
 
     elif 'down' in request.POST:
-        return redirect(reverse('project_page', args=[project_name]))
+        
+        a = Projects.objects.get(project_name=proj.project_name)
+        
+        user = request.user
+        print('Archit2')
+        
+        if user not in a.downloaded.all():
+            print('t')
+            a.downloaded.add(user)
+            new_down = Downloaders(pd_name = a, downloader = request.user)
+            new_down.save()
+            
+            return redirect(reverse('project_page', args=[project_name]))
     
     return render(request,'project_page.html', context)

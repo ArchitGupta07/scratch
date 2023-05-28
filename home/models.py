@@ -130,9 +130,16 @@ class Featured(models.Model):
 class Projects_text(models.Model):
      def __str__(self):
             return self.first_name+" "+self.last_name
-# class Tags_projects(models.Model):
-#      def __str__(self):
-#             return self.first_name+" "+self.last_name
+     
+
+class Downloaders(models.Model):
+    pd_name = models.ForeignKey(Projects,max_length=100, null=True,on_delete=models.CASCADE)
+    downloader =  models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE)     
+
+    def __str__(self):
+            return str(self.pd_name)+ " " + str(self.downloader)
+    
+    
 # class Tags_projects(models.Model):
 #      def __str__(self):
 #             return self.first_name+" "+self.last_name

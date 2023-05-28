@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate
-from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects,Favourites
+from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects,Favourites,Featured
 from .models import Lovers,Viewers
 
 from django.contrib.auth.models import User
@@ -38,6 +38,9 @@ def index(request):
         
     return render(request,'index.html',context)
 
+
+
+
 def loginUser(request):
 
     if 'in' in request.POST:
@@ -57,16 +60,34 @@ def loginUser(request):
 
     return render(request,'login.html')
 
+
+
+
+
 def logoutUser(request):
    logout(request)
    return redirect("/login")
 
+
+
+
 def home(request):
-   return render(request,'home.html')
+   
+    s = Featured.objects.all()[:3]
+
+    project_names = [entry.project_n for entry in s]
+
+    d = Projects.objects.filter(project_name__in=project_names)
+    context={
+        'd':d
+    }  
+
+    return render(request,'home.html', context)
+
+
 
 
 def projects(request):  
-
     if request.method=='POST':
         
         comment = request.POST.get('comment')

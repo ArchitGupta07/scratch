@@ -109,6 +109,12 @@ class Viewers(models.Model):
             return str(self.pv_name)+ " " + str(self.viewer)
      
 
+class Featured(models.Model):
+    project_n = models.ForeignKey(Projects,max_length=100, null=True,on_delete=models.CASCADE, related_name = 'project_n')
+    creator = models.ForeignKey(Projects,max_length=100, null=True,on_delete=models.CASCADE, related_name='creator')
+
+    def __str__(self):
+            return str(self.project_n)
 
 # class Tags_projects(models.Model):
 #      def __str__(self):

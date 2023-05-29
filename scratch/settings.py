@@ -87,17 +87,17 @@ DATABASES = {
 
 #     DATABASES['default'] = dj_database_url.config(comm_max_age = 600, ssl_require =True)
 # else:
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'scratch',
-#         'USER': 'postgres',
-#         'PASSWORD': 'archit@archit',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-#     }
-DATABASES['default'] = dj_database_url.config()
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'dfbMGxFgA9EBq09GcI20',
+        'HOST': 'containers-us-west-188.railway.app',
+        'PORT': '7407',
+    }
+    }
+# DATABASES['default'] = dj_database_url.config()
     # DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',

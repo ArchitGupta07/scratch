@@ -10,7 +10,7 @@ class Profiles(models.Model):
     username = models.CharField(max_length=100,null=False)    
     password = models.CharField(max_length=100,null=False)
     location = models.CharField(max_length=100, default='None')
-    image = models.ImageField(upload_to="static/images",default='None')
+    image = models.ImageField(upload_to="static/images",default=None)
 
     # friends = models.CharField(max_length=100,null=False,default='None')
     email = models.EmailField(default='None')
@@ -26,7 +26,7 @@ class Projects(models.Model):
     
     project_name = models.CharField(max_length=100, null=False)
     project_notes = models.CharField(max_length=500,default='None')
-    p_image = models.ImageField(upload_to="images/",default='None')
+    p_image = models.ImageField(upload_to="images/",default=None)
     p_creator = models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE,related_name='p_creator')
     date = models.DateField(null=True,default=None)
     project_link = models.URLField(null = True)

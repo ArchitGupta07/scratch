@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,12 +77,39 @@ WSGI_APPLICATION = 'scratch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+# if os.environ['ENVIRONMENT'] == "PRODUCTION":
+
+#     DATABASES['default'] = dj_database_url.config(comm_max_age = 600, ssl_require =True)
+# else:
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'scratch',
+        'USER': 'postgres',
+        'PASSWORD': 'archit@archit',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
-}
+    }
+DATABASES['default'] = dj_database_url.config()
+    # DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'scratch',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'archit@archit',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
+    # }
+
+
 
 
 # Password validation

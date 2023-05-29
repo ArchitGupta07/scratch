@@ -220,10 +220,12 @@ def project_page(request,project_name):
     comm = Pcomments.objects.filter(pname__project_name=project_name)   #Doubt Field ‘id’ expected a number but got ‘Free’  link - In this updated code, pname__project_name represents the lookup condition where project_name matches the project_name field in the related Projects object.Please make sure that the Pcomments model has a field named pname that refers to the Projects model using a ForeignKey or similar relationship. Additionally, ensure that project_name contains the desired project name value for the lookup.
     # print(comm)
     # print('Archit2')
+    # prof = Profiles.objects.filter(username=request.user).first()
 
     tagg = Tags_projects.objects.filter(p_tag_name__project_name = project_name)
     context = {
         'proj':proj,
+        # 'prof':prof,
         'comm':comm,
         'tagg':tagg
     }

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 # Create your models here.   
 
 
@@ -10,7 +11,8 @@ class Profiles(models.Model):
     username = models.CharField(max_length=100,null=False)    
     password = models.CharField(max_length=100,null=False)
     location = models.CharField(max_length=100, default='None')
-    image = models.ImageField(upload_to="static/images",default=None)
+    # image = models.ImageField(upload_to="static/images",default=None)
+    image = CloudinaryField('image')
 
     # friends = models.CharField(max_length=100,null=False,default='None')
     email = models.EmailField(default='None')

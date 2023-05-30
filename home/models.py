@@ -28,7 +28,8 @@ class Projects(models.Model):
     
     project_name = models.CharField(max_length=100, null=False)
     project_notes = models.CharField(max_length=500,default='None')
-    p_image = models.ImageField(upload_to="static/images",default=None)
+    # p_image = models.ImageField(upload_to="static/images",default=None)
+    p_image = CloudinaryField('image')
     p_creator = models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE,related_name='p_creator')
     date = models.DateField(null=True,default=None)
     project_link = models.URLField(null = True)

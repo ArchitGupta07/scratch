@@ -1,0 +1,6 @@
+1) https://dev.to/dennisivy11/easiest-django-postgres-connection-ever-with-railway-11h6
+
+2) https://omavhad.hashnode.dev/deploying-django-with-postgresql-on-vercel
+
+3) cloudinary setup for images
+

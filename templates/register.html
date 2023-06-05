@@ -1,88 +1,80 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Responsive Registration Form | CodingLab </title>
+    <link rel="stylesheet" href="/static/css/register.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+    <div class="title">Registration</div>
+    <div class="content">
+      <form method="POST" action="">
+        {% csrf_token %}
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">First Name</span>            
+            <input type="text" id="first_name" class="form-control" name="first_name" value="{{first_name}}" placeholder="First Name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Last Name</span>
+            <input type="text" id="last_name" class="form-control" name="last_name" value="{{last_name}}" placeholder="Last Name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Username</span>
+            <input type="text" id="username" name="username" value="{{username}}" class="form-control" placeholder="Username" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Location</span>
+            <input type="text" id="location" name="location" value="{{location}}" class="form-control" placeholder="Location" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="email" id="email" name="email" value="{{email}}" class="form-control" placeholder="Email" required>
+          </div>
+          <!-- <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" placeholder="Enter your number" required>
+          </div> -->
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="text" class="form-control" name="password" value="{{password}}" id="password" placeholder="Password" required>
+          </div>
+          <div class="input-group custom-file-button mb-3">	
+            <span class="details" style="font-weight: 500;"> Profile Pic : </span>
+            <input type="file" id="inputGroupFile" name="image" value="{{image}}">
+        </div>
+          
+        </div>
+        <div class="gender-details">
+          <input type="radio" name="gender" id="dot-1">
+          <input type="radio" name="gender" id="dot-2">
+          <input type="radio" name="gender" id="dot-3">
+          <span class="gender-title">Gender</span>
+          <div class="category">
+            <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">Male</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">Female</span>
+          </label>
+          <label for="dot-3">
+            <span class="dot three"></span>
+            <span class="gender">Prefer not to say</span>
+            </label>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+  </div>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.rtl.min.css"
-        integrity="sha384-T5m5WERuXcjgzF8DAb7tRkByEZQGcpraRTinjpywg37AO96WoYN9+hrhDVoM6CaT" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <title>Register</title>
-</head>
-
-<body class="bg-light">
-    <center>
-        <h1>Welcome to Scratch. Register Yourself</h1>
-        <br /><br />
-        <div class="container ">
-            <div class="row mt-5 " >
-                <div class="col-lg-4 border rounded bg-success m-auto">
-                    <h2 class="text-center pt-3">Signup Now</h2>
-                    <p class="text-center text-muted lead">It's Free and Takes a Minute</p>
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="fa fa-user"></i></span>
-                            <input type="text" id="first_name" class="form-control" name="first_name" value="{{first_name}}" placeholder="First Name" />
-                        </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="fa fa-user"></i></span>
-                            <input type="text" id="last_name" name="last_name" value="{{last_name}}" class="form-control" placeholder="Last Name" />
-                        </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="fa fa-user"></i></span>
-                            <input type="text" id="username" name="username" value="{{username}}" class="form-control" placeholder="Username" />
-                        </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="fa fa-location-arrow"></i></span>
-                            <input type="text" id="location" name="location" value="{{location}}" class="form-control" placeholder="Location" />
-                        </div>
-
-                        <div class="input-group mb-3"> <span class="input-group-text"><i
-                                    class="fa fa-envelope"></i></span>
-                            <input type="email" id="email" name="email" value="{{email}}" class="form-control" placeholder="Email" />
-                        </div>
-
-                        <div class="input-group custom-file-button mb-3">	
-                            <!-- <label class="input-group-text" for="inputGroupFile">Profile Pic</label> -->
-                            <input type="file" id="inputGroupFile" name="image" value="{{image}}">
-                        </div>
-
-                        <!-- <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="fa fa-book"></i></span>
-                            <input style="height:100px" type="text" class="form-control form-control-lg mb-100" placeholder="Description" />
-                        </div> -->
-                        <!-- <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="fa fa-book"></i></span>
-                            <textarea class="form-control form-control-lg" value="{{description}}" name="" id="description" ></textarea>
-
-                        </div> -->
-                       
-
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                            <input type="text" class="form-control" name="password" value="{{password}}" id="password" placeholder="Password" />
-                        </div>
-                        <input type="submit" value="Register" class="btn btn-success ">
-                    </form>
-    </center>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script> -->
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-    -->
 </body>
-
 </html>

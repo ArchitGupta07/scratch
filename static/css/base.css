@@ -1,0 +1,164 @@
+*{
+    /* margin: 0;
+    padding: 0;
+    box-sizing: border-box; */
+    font-family: 'Open Sans',sans-serif;
+
+
+}
+
+body{
+    height: 100vh;
+    /* background-color: #000; */
+    background-image: url(../images/back_base2.jpg);
+
+    background-size: cover;
+    /* background-size: contain;
+    background-repeat: no-repeat; */
+    background-position: center;
+    background-attachment: fixed;
+
+}
+li{
+    list-style: none;
+
+}
+
+a{
+    text-decoration: none;
+    color: rgb(11, 1, 5);
+    font-size: 1rem;
+}
+
+a:hover{
+    color: rgb(84, 6, 242);
+}
+
+
+
+/* Header */
+
+
+header{
+    /* z-index:-1; */
+    position: relative;
+    padding: 0 2rem;
+    
+    background: linear-gradient(45deg, #df5e0f, #f4dc0a);
+    border-radius: 0px 0px 40px 40px ;
+
+}
+
+.navbar{
+    width: 100%;
+    /* padding-top: 25px; */
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;  
+    align-items: center;
+    justify-content: space-between;
+    /* display: inline-flex; */
+   
+}
+
+.navbar .logo{
+    font-size: 1rem;
+    font-weight: bold;
+   
+    /* display: inline-block; */
+    
+
+}
+
+.navbar .links{
+    display: flex;
+    gap: 2rem;
+    /* display: inline-block; */
+   
+
+}
+.navbar .toggle_btn{
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+
+}
+
+.action_btn{
+    /* background-color: orange; */
+    background: linear-gradient(147deg, #fe8a39  0%, #fd3838 74%);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.action_btn:hover{
+    scale: 0.95;
+
+}
+
+/* DROPDOWN MENU  */
+
+.dropdown_menu{
+display: none;
+position: absolute;
+right: 2rem;
+top:60px;
+height: 0;
+width: 300px;
+background: rgba(255,255,255,0);
+backdrop-filter: blur(15px);
+border-radius: 10px;
+overflow: hidden;
+transition: height .2s ;
+
+}
+.dropdown_menu.open{
+    height: 240px;
+}
+
+.dropdown_menu li{
+    padding:0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown_menu .action_btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+/* RESPONSIVE DESIGN  */
+
+@media(max-width: 992px){
+
+    .navbar .links,
+    .navbar .action_btn{
+        display: none;
+    }
+
+    .navbar .toggle_btn{
+        display: block;
+
+    }
+
+    .dropdown_menu{
+        display: block;
+    }
+}
+
+@media (max-width:576px){
+    .dropdown_menu{
+        left: 2rem;
+        width: unset;
+    }
+}

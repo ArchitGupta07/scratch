@@ -1,2 +1,5 @@
 1) Download project feature
 {{p.p_image.url}}
+
+2) check views
+3) check models

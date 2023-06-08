@@ -100,17 +100,17 @@ p{
 }
 
 .homeviewbtn button{
-  background: #d69890;
+  background: linear-gradient(45deg, #56a1f0, #ce8bf0);
   border: transparent;
   border-radius: 30px ;
-  padding: 8px 30px;
-  margin: 30px 0;
+  padding: 8px 10px;
+  margin: 10px 0;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
   transition: background 0.5s;
 }
 .homeviewbtn button:hover{
-  background: #9a9393;
+  background: linear-gradient(45deg, #5be4f0, #7840fa);
 
 }
 

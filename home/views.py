@@ -14,13 +14,43 @@ def index(request):
     if request.user.is_anonymous:
         return redirect('/login')
     
-    profile = Profiles.objects.get(username = request.user) 
-    project = Projects.objects.filter(p_creator = request.user)
+    # profile = Profiles.objects.get(username = request.user) 
+    # project = Projects.objects.filter(p_creator = request.user)
 
-    context ={
-        'profile':profile,
-        'project':project
-        }    
+    # context ={
+    #     'profile':profile,
+    #     'project':project
+    #     }    
+    # if 'view' in request.POST: 
+
+    #     p = request.POST.get('proj_name')
+    #     a = Projects.objects.get(project_name=p)
+    #     print(p, 'check')
+    #     user = request.user
+        
+        
+    #     if user not in a.viewed.all():
+    #         a.viewed.add(user)
+    #         new_view = Viewers(pv_name = a, viewer = request.user)
+    #         new_view.save()
+    #         return redirect(reverse('project_page', args=[p]))
+    #     else:            
+    #         return redirect(reverse('project_page', args=[p]))
+    s = Featured.objects.all()[:3]
+
+    project_names = [entry.project_n for entry in s]
+
+    d = Projects.objects.filter(project_name__in=project_names)
+
+    random_row = Projects.objects.annotate(random_number=Random()).order_by('random_number').first()
+    
+    random_proj = Projects.objects.filter(p_creator = random_row.p_creator)
+    context={
+        'd':d,
+        'random_row':random_row,
+        'random_proj':random_proj
+        
+    }  
     if 'view' in request.POST: 
 
         p = request.POST.get('proj_name')
@@ -36,8 +66,8 @@ def index(request):
             return redirect(reverse('project_page', args=[p]))
         else:            
             return redirect(reverse('project_page', args=[p]))
-        
-    return render(request,'index.html',context)
+    return render(request,'home.html', context)
+    
 
 
 

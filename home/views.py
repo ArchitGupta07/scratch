@@ -103,6 +103,12 @@ def logoutUser(request):
 
 
 def home(request):
+
+    user1 = request.user
+
+
+
+    your_projects = Projects.objects.filter(p_creator=user1)
    
     s = Featured.objects.all()[:3]
 
@@ -116,7 +122,8 @@ def home(request):
     context={
         'd':d,
         'random_row':random_row,
-        'random_proj':random_proj
+        'random_proj':random_proj,
+        'your_projects':your_projects
         
     }  
     if 'view' in request.POST: 

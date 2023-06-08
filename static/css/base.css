@@ -483,6 +483,11 @@ input:focus{
   margin: 30px 0;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
+  transition: background 0.5s;
+}
+.viewmore button:hover{
+  background: #9a9393;
+
 }
 
 /* -------comment section---------------- */

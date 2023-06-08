@@ -1,61 +1,90 @@
-{% extends 'base.html' %}
-{% block title %}services{% endblock title %}
-{% block body %}
-<center>
-    <h1>Create Project</h1>
-    <br /><br/>
-    <div class="container ">
-        <div class="row mt-5 " >
-            <div class="col-lg-4 border rounded bg-success m-auto">
-                <h2 class="text-center pt-3">Enter Project Details</h2>
-                <p class="text-center text-muted lead">It's Free and Takes a Minute</p>
-                <form action="" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa fa-user"></i></span>
-                        <input type="text" id="project_name" class="form-control" name="project_name" value="{{project_name}}" placeholder="Project Name" />
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa fa-user"></i></span>
-                        <input type="text" id="project_notes" class="form-control" name="project_notes" value="{{project_notes}}" placeholder="Project Notes" />
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa fa-user"></i></span>
-                        <input type="url" id="project_link" name="project_link" value="{{project_link}}" class="form-control" placeholder="Github Link" />
-                    </div>
-                    <!-- {% comment %} <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa fa-user"></i></span>
-                        <input type="text" id="username" name="username" value="{{username}}" class="form-control" placeholder="Username" />
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa fa-location-arrow"></i></span>
-                        <input type="text" id="location" name="location" value="{{location}}" class="form-control" placeholder="Location" />
-                    </div>
+<!DOCTYPE html>
 
-                    <div class="input-group mb-3"> <span class="input-group-text"><i
-                                class="fa fa-envelope"></i></span>
-                        <input type="email" id="email" name="email" value="{{email}}" class="form-control" placeholder="Email" />
-                    </div> {% endcomment %} -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation Bar with Search Box</title>
+    <link rel="stylesheet" href="../static/css/register.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Unicons CSS -->
+    
+   
+  </head>
+  <body>
 
-                    <div class="input-group mb-3"><input type="file" id="p_image" name="p_image" value="{{p_image}}" ></div>
+<div class="container">
+  <div>
+    <a href="/home">&#8594; Back to home</a>
+  </div>
+  <br>
+    <div class="title">Create Project</div>
+    <div class="content">
+      <form method="POST" action="">
+        {% csrf_token %}
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Project Name</span>            
+            <input type="text" id="first_name" class="form-control" name="first_name" value="{{first_name}}" placeholder="First Name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Framework</span>
+            <input type="text" id="last_name" class="form-control" name="last_name" value="{{last_name}}" placeholder="Last Name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Username</span>
+            <input type="text" id="username" name="username" value="{{username}}" class="form-control" placeholder="Username" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Location</span>
+            <input type="text" id="location" name="location" value="{{location}}" class="form-control" placeholder="Location" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="email" id="email" name="email" value="{{email}}" class="form-control" placeholder="Email" required>
+          </div>
+          <!-- <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" placeholder="Enter your number" required>
+          </div> -->
 
-                    <!-- <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa fa-book"></i></span>
-                        <input style="height:100px" type="text" class="form-control form-control-lg mb-100" placeholder="Description" />
-                    </div> -->
-                    <!-- <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa fa-book"></i></span>
-                        <textarea class="form-control form-control-lg" value="{{description}}" name="" id="description" ></textarea>
-
-                    </div> -->
-                   
-
-                    {% comment %} <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                        <input type="text" class="form-control" name="password" value="{{password}}" id="password" placeholder="Password" />
-                    </div> {% endcomment %}
-                    <input type="submit" value="Register" class="btn btn-success ">
-                </form>
-</center>
-
-{% endblock body %}
+          <!-- <div class="input-box">
+            <span class="details">Password</span>
+            <input type="text" class="form-control" name="password" value="{{password}}" id="password" placeholder="Password" required>
+          </div> -->
+          <div class="input-group custom-file-button mb-3">	
+            <span class="details" style="font-weight: 500;"> Web App :  </span>
+            <input class="px-2" type="file" id="inputGroupFile" name="image" value="{{image}}">
+        </div>
+          
+        </div>
+        <!-- <div class="gender-details">
+          <input type="radio" name="gender" id="dot-1">
+          <input type="radio" name="gender" id="dot-2">
+          <input type="radio" name="gender" id="dot-3">
+          <span class="gender-title">Gender</span>
+          <div class="category">
+            <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">Male</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">Female</span>
+          </label>
+          <label for="dot-3">
+            <span class="dot three"></span>
+            <span class="gender">Prefer not to say</span>
+            </label>
+          </div>
+        </div> -->
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

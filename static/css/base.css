@@ -474,6 +474,17 @@ input:focus{
 
 }
 
+
+.viewmore button{
+  /* background: #ff523b; */
+  border: transparent;
+  border-radius: 30px ;
+  padding: 8px 30px;
+  margin: 30px 0;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
 /* -------comment section---------------- */
 
 .comment-box,

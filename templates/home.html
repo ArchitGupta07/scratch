@@ -20,7 +20,7 @@
     {% for p in your_projects  %}
       <div class="col-3">
         <img src="{{p.p_image.url}}" height="250px" alt="">
-        <b>Mediline</b>
+        <b>{{p.project_name}}</b>
         <form method="post" action="">
           {% csrf_token %}
         <input type="hidden" name="proj_name" value="{{p.project_name}}">

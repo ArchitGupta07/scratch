@@ -5,22 +5,7 @@ from cloudinary.models import CloudinaryField
 
 
 
-class Profiles(models.Model):
-    first_name = models.CharField(max_length=100,null=False)
-    last_name = models.CharField(max_length=100,null=False,default='None')
-    username = models.CharField(max_length=100,null=False)    
-    password = models.CharField(max_length=100,null=False)
-    location = models.CharField(max_length=100, default='None')
-    # image = models.ImageField(upload_to="static/images",default=None)
-    image = CloudinaryField('image')
 
-    # friends = models.CharField(max_length=100,null=False,default='None')
-    email = models.EmailField(default='None')
-    friend = models.ManyToManyField(User, default = None, blank=True, related_name='friend')
-    
-
-    def __str__(self):
-        return self.first_name+" "+self.last_name
     
 
 
@@ -28,8 +13,8 @@ class Projects(models.Model):
     
     project_name = models.CharField(max_length=100, null=False)
     project_notes = models.CharField(max_length=500,default='None')
-    # p_image = models.ImageField(upload_to="static/images",default=None)
-    p_image = CloudinaryField('image')
+    p_image = models.ImageField(upload_to="static/images",default=None)
+    # p_image = CloudinaryField('image')
     p_creator = models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE,related_name='p_creator')
     date = models.DateField(null=True,default=None)
     project_link = models.URLField(null = True)
@@ -62,6 +47,23 @@ class Projects(models.Model):
 
     # comments = models.CharField(max_length=100,default='None')
     # tags = models.CharField(max_length=100,default='None')
+class Profiles(models.Model):
+    first_name = models.CharField(max_length=100,null=False)
+    last_name = models.CharField(max_length=100,null=False,default='None')
+    username = models.CharField(max_length=100,null=False)    
+    password = models.CharField(max_length=100,null=False)
+    location = models.CharField(max_length=100, default='None')
+    image = models.ImageField(upload_to="static/images",default=None)
+    # image = CloudinaryField('image')
+
+    # friends = models.CharField(max_length=100,null=False,default='None')
+    email = models.EmailField(default='None')
+    friend = models.ManyToManyField(User, default = None, blank=True, related_name='friend')
+    proj_created = models.ManyToManyField(Projects, default = None, blank=True, related_name='proj_created')
+    
+
+    def __str__(self):
+        return self.first_name+" "+self.last_name
     
 
 class Gallery(models.Model):
@@ -125,7 +127,7 @@ class Viewers(models.Model):
 
 class Featured(models.Model):
     project_n = models.ForeignKey(Projects,max_length=100, null=True,on_delete=models.CASCADE, related_name = 'project_n')
-    creator = models.ForeignKey(Projects,max_length=100, null=True,on_delete=models.CASCADE, related_name='creator')
+    # creator = models.ForeignKey(Profiles,max_length=100, null=True,on_delete=models.CASCADE, related_name='creator')
 
     def __str__(self):
             return str(self.project_n)

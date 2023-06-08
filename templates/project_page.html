@@ -1,198 +1,321 @@
-{% extends 'base.html' %}
-{% block title %}services{% endblock title %}
-{% block body %}
+<!DOCTYPE html>
 
-<div class="container py-3">
-    <div class="d-flex gap-8 ">
-        <div>
-            <div  class="flex-grow-1 col-xs-6">
-                <div class="text-bg-dark border border-success rounded me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center  overflow-hidden">
-                    <div class="my-3 py-3">
-                    <h2 class="display-5">{{proj.project_name}}</h2>
-                    <p class="lead">Welcome.</p>
-                    </div>
-                    <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 100%; height: 500px; border-radius: 21px 21px 0 0;">
-                        <img class="img-fluid img-responsive fit-image" src="{{proj.p_image.url}}" alt="">
-                        <!-- <img class="img-fluid img-responsive fit-image" src="here" alt=""> -->
-                    </div>
-                </div>                
-            </div>
-            <div>
-              <br>
-              
-              <img class="rounded-circle shadow-1-strong me-3"
-                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60"
-                              height="60" /> {{ proj.p_creator}} shared it on {{proj.date}}
-              <br>
-              <br>
-              Based on MyRedNeptunes's project
-              <br>
-              <br>
+<html lang="en">
 
-              {{proj.num_views}} views, {{proj.num_tags}} taggers, {{proj.num_likes}} people love it, 1 remix by 1 person, {{proj.num_down}} downloads, in 1 gallery
-              <br>
-              <br>
+<head>
+  <meta charset="UTF-8" />
 
-              Love it?   Add to my favourites? Flag as inappropiate?
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects</title>
+  <link rel="stylesheet" href="../static/css/base.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Unicons CSS -->
 
 
-            </div>
-            <section style="background-color: #eee;">
-                <div class="container my-5 py-5">
-                  <div class="row d-flex justify-content-center">
-                    <div class="col-md-12 col-lg-10 col-xl-8">
-                      <div class="card ">
+</head>
 
-                        {% for c in comm  %}
-                        <div class="card-body">
-                          <div class="d-flex flex-start align-items-center">
-                            <!-- <img class="rounded-circle shadow-1-strong me-3"
-                              src="here" alt="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" width="60"
-                              height="60" /> -->
-                            <img class="rounded-circle shadow-1-strong me-3"
-                              src="/static/avatar.jpg" alt="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" width="60"
-                              height="60" />
-                            <div>
-                              <h6 class="fw-bold text-primary mb-1">{{c.username}}</h6>
-                              <p class="text-muted small mb-0">
-                                Shared publicly - {{c.date}}
-                              </p>
-                            </div>
-                          </div>
-              
-                          <p class="mt-3 mb-4 pb-2">
-                            {{c.comment}}
-                          </p>
-              
-                          <div class="small d-flex justify-content-start">
-                            <a href="#!" class="d-flex align-items-center me-3">
-                              <i class="far fa-thumbs-up me-2"></i>
-                              <p class="mb-0">Like</p>
-                            </a>
-                            <a href="#!" class="d-flex align-items-center me-3">
-                              <i class="far fa-comment-dots me-2"></i>
-                              <p class="mb-0">Comment</p>
-                            </a>
-                            <a href="#!" class="d-flex align-items-center me-3">
-                              <i class="fas fa-share me-2"></i>
-                              <p class="mb-0">Share</p>
-                            </a>
-                          </div>
-                        </div>
-                        {% endfor %}
-                        <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
-                          <div class="d-flex flex-start w-100">
-                            
-                            <form method="POST" action="" >
-                                {% csrf_token %}
-                              <textarea class="form-control" id="comment" name="comment" rows="4" cols="100"  style="background: #fff;"></textarea>
-                            
-                             
-                                <button type="submit" name='com' class="btn btn-primary btn-sm">Post comment</button>
-                                
-                              
-                            </form>
-                          </div>
-                         
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-        </div>
-        <div class=" pl-6 col-xs-6">
-            <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary" style="width: 380px;">
-                
-                <div class="list-group list-group-flush border rounded scrollarea">
-                  <a href="#" class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                      <strong class="mb-1">DownLoad This Project</strong>
-                      <small>Wed</small>
-                    </div>
-                    <div class="col-10 mb-1 small">
-                      
-                      <!-- <li>Name: {{ profile.first_name }} {{ profile.last_name }} </li>
-                      <li>Location: {{ profile.location }}</li> -->
+<body>
 
-                      Download the Components of {{proj.project_name}} and Open it in Scratch
-                      
-                    </div>
-                  </a>
-                  <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                      <strong class="mb-1">Project Notes</strong>
-                      <small class="text-body-secondary">Tues</small>
-                    </div>
-                    <div class="col-10 mb-1 small">{{proj.project_notes}}</div>
-                  </a>
-                  <!-- <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                      <strong class="mb-1">Gallery</strong>
-                      <small class="text-body-secondary">Tues</small>
-                    </div>
-                    <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-                  </a> -->
-                  <div class="list-group-item py-3 lh-sm">
-                  <div class="">
-                    <strong class="mb-1 ">TAGs</strong>
-                    <div class="py-1">
-                      {% for t in tagg  %}
-                      #{{t.tag}} 
-                      {% endfor %}
-                    </div>
-                    <br>                    
-                    <form method="post" action=""> 
-                        {% csrf_token %}                
-                    <input type="text" id="tag" name="tag" value="{{tag}}" class="form-control " />
-                    <br>                  
-                    
-                    <button class="btn btn-primary" name='tags' type="submit">Add Tag</button>
-                    </form>   
-                  </div>
-                  <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                   -->
-                </div>
-                <div class="list-group-item  py-3 lh-sm">
-                  <div class="">
-                    <strong class="mb-1 ">Link To This Project</strong>
-                    <div class="py-1">
-                      <form method="post" action = "">
-                        {% csrf_token %} 
-                        <button class="btn btn-primary"  name='down' type="submit">
-                            Download
-                        </button>
-                    </form>
-                      <!-- <a href="{{proj.project_link}}">Download</a> -->
-                      
-                    </div>
-                    <br>            
-                  </div>
-                  <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                   -->
-                </div>
-                <div class="list-group-item py-3 lh-sm">
-                  <div class="">                   
-                    
-                    <br>                    
-                    <form method="post" action=""> 
-                      {% csrf_token %}             
-                    <br>               
-                    <button class="btn btn-primary" name='fav' type="submit">Add To Favourites</button>
-                    <input type="hidden" name="proj_name" value ={{proj.project_name}} >
-                    {% if user not in proj.liked.all %}
-                    <button class="btn btn-primary positive" name='like' type="submit">Like</button>
-                    </form>   
-                    {% else %}
-                    <button class="btn btn-primary negative" name='like' type="submit">Unlike</button>
-                    {% endif %}
-                    <strong><!-- {{proj.liked.all.count}} --> {{proj.num_likes}}Likes</strong>
-                    </form>   
-                  </div>
-                  <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>                   -->
-                </div>
-                </div>
-              </div>    
-        </div>
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <!-- <img class="logo" width="125px" height="125px" src="../static/images/edt.png" alt=""> -->
+      </div>
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/project_page/Mediline">Projects</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/support">Support</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+      <img src="../static/images/server.png" width="30px" height="30px" alt="">
+      <img src="../static/images/menu.png" class="menu-icon"  onclick="menuToggle()">
     </div>
+    
+  </div>
+
+
+<!-- ---------------single project details---------------- -->
+
+
+<div class="small-container single-product">
+  <div class="row">
+    <div class="col-2">
+      <img src="{{proj.p_image.url}}" alt="" width="100%" id="productimg">
+
+      <div class="small-img-row">
+
+        <form method="post" action="">
+          {% csrf_token %}   
+          <input type="hidden" name="proj_name" value ={{proj.project_name}} >
+          <div class="small-img-col">
+            {% if user not in proj.liked.all %}
+            <button  name='like' type="submit" style="color: #7b7776;"><i class="fa fa-heart fa-2x"></i></button>
+            <b> {{proj.num_likes}}</b>
+            {% else %}
+            <button  name='like' type="submit" style="color: #e91571;"><i class="fa fa-heart fa-2x"></i></button>
+            <b> {{proj.num_likes}}</b>
+            {% endif %}
+          </div>
+        </form>
+        <div class="small-img-col">
+          <button style="color: #7b7776;"><i class="fa fa-eye fa-2x"></i></button>
+          <b> {{proj.num_views}}</b>
+        </div>
+        <div class="small-img-col">
+          <button style="color: #7b7776;"><i class="fa fa-comments-o fa-2x"></i></button>
+          <b> 1</b>
+        </div>
+        <div class="small-img-col">
+          <button style="color: #7b7776;"><i class="fa fa-cloud-download fa-2x"></i></button>
+          
+          <b> {{proj.num_down}}</b>
+        </div>
+        <div class="small-img-col">
+          <!-- <button><i class="fa fa-cloud-download fa-3x" aria-hidden=""></i></button> -->
+          <button style="color: #7b7776;"><i class="fa fa-bookmark fa-2x"></i></button>
+          <b> 1</b>
+        </div>
+        <!-- <div class="small-img-col">
+                      <img src="../images/gallery-1.jpg" alt="" width="100%" class="small-img">
+                  </div>
+                  <div class="small-img-col">
+                      <img src="../images/gallery-1.jpg" alt="" width="100%" class="small-img">
+                  </div>
+                  <div class="small-img-col">
+                      <img src="../images/gallery-1.jpg" alt="" width="100%" class="small-img">
+                  </div>
+                  <div class="small-img-col">
+                      <img src="../images/gallery-1.jpg" alt="" width="100%" class="small-img">
+                  </div> -->
+      </div>
+
+
+
+
+    </div>
+    <div class="col-2">
+      
+      <h1>Project name</h1>
+      <p>Created by : {{proj.p_creator}} </p>
+      <!-- <h4>rs100</h4>
+      <select>
+        <option value="">Select Size</option>
+        <option value="">XXL</option>
+        <option value="">XL</option>
+        <option value="">Large</option>
+      </select> -->
+      <h3>Project Notes<i class="fa fa-indent"></i></h3>
+      <br>
+      <p>
+        {{proj.project_notes}}
+      </p>
+
+
+      <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" class="impbtn" name="down">Download</button>
+      <button type="submit" class="impbtn" name="remix">Remix this</button>
+      <button type="submit" class="impbtn" name="fav">Add To Favourites</button>
+      </form>
+
+
+      
+
+
+      <!-- <a href="" class="btn">Download</a>
+      <a href="" class="btn">Remix this</a>
+      <a href="" class="btn">Favourites</a> -->
+     
+    </div>
+  </div>
 </div>
 
-{% endblock body %}
+<!-- title -->
+
+<div class="small-container">
+  <div class="row row-2">
+    <h2> Related Projects</h2>
+    <button><p>View More</p></button>
+  </div>
+</div>
+
+<div class="small-container">
+  <!-- <h2 class="title">Your Gallery</h2> -->
+
+
+  <div class="row">
+    <div class="col-4">
+      <img src="../static/images/project2.jpg" alt="">
+      <h4>Red Printed T-shirts</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Red Printed T-shirts</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project4.jpg" alt="">
+      <h4>Red Printed T-shirts</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project5.jpg" alt="">
+      <h4>Red Printed T-shirts</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+  </div>
+
+
+
+</div>
+
+<!-- offer -->
+
+
+
+
+<!-- ----------Testimonial ---------------------- -->
+
+
+
+
+
+<!-- ------------------brands------------------- -->
+
+
+<!-- --------------comment box-------------- -->
+
+ <div class="comment-session">
+  {% for c in comm  %}
+  <div class="post-comment">
+    <div class="list">
+      <div class="user">
+        <div class="user-image"><img src="../static/images/avatar.jpg" alt=""></div>
+        <div class="user-meta">
+          <div class="name">{{c.username}}</div>
+          <div class="day"> {{c.date}}</div>
+
+        </div>
+      </div>
+      <div class="comment-post">{{c.comment}}</div>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="comment-box">
+    <div class="user">
+      <div class="image"><img src="../static/images/avatar.jpg" alt=""></div>
+      <div class="name">Archit</div>
+
+    </div>
+    <form action="" method="post">
+      {% csrf_token %}
+      <textarea id="comment" name="comment" cols="30" rows="10" placeholder="Your message"></textarea>
+      <button type="submit" name="com" class="comment-submit">Post Comment</button>
+    </form>
+  </div>
+ </div>
+ <br>
+ <br>
+ <div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer-col-1">
+        <h3>Download Our App</h3>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        <div class="app-logo">
+          <img src="../static/images/play-store.png" alt="">
+          <img src="../static/images/app-store.png" alt="">
+        </div>
+      </div>
+      <div class="footer-col-2">
+        <img src="" alt="">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div class="footer-col-3">
+        <h3>Useful Links</h3>
+        <ul>
+          <li>Coupons</li>
+          <li>Blog Post</li>
+          <li>Policy </li>
+          <li>Patreon</li>
+        </ul>
+      </div>
+      <div class="footer-col-4">
+        <h3>Follow Us</h3>
+        <ul>
+          <li>Facebook</li>
+          <li>Instagram</li>
+          <li>Twitter </li>
+          <li>Youtube</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <p class="copyright">Copyright 2023 - Archit Gupta</p>
+  </div>
+</div>
+
+ <script>
+
+  var MenuItems = document.getElementById("MenuItems");
+  MenuItems.style.maxHeight = "0px";
+  function menuToggle() {
+    if (MenuItems.style.maxHeight == "0px") {
+      MenuItems.style.maxHeight = "200px";
+
+    }
+    else {
+      MenuItems.style.maxHeight = "0px";
+    }
+  }
+
+
+
+</script>
+
+
+ <script>
+  var productimg = document.getElementById("productimg");
+  var smallimg = document.getElementsByClassName("small-img");
+  smallimg[0].onclick = function () {
+    productimg.src = smallimg[0].src;
+  }
+  smallimg[1].onclick = function () {
+    productimg.src = smallimg[0].src;
+  }
+  smallimg[2].onclick = function () {
+    productimg.src = smallimg[0].src;
+  }
+  smallimg[3].onclick = function () {
+    productimg.src = smallimg[0].src;
+  }
+</script>
+
+
+<!-- like button -------------  -->
+<script>
+  function liked(){
+    var element = document.getElementById("like");
+    element.classList.toggle("liked");
+  }
+</script>
+
+
+
+
+</body>
+
+</html>

@@ -18,10 +18,12 @@ body{
 
 }
 nav{
+  
   flex: 1;
   text-align: right;
 
 }
+ 
 nav ul{
   list-style-type: none;
   display: inline-block;

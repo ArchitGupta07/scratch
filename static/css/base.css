@@ -99,6 +99,21 @@ p{
   margin-top: 70px;
 }
 
+.homeviewbtn button{
+  background: #d69890;
+  border: transparent;
+  border-radius: 30px ;
+  padding: 8px 30px;
+  margin: 30px 0;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.5s;
+}
+.homeviewbtn button:hover{
+  background: #9a9393;
+
+}
+
 
 .categories{
   margin: 70px 0;

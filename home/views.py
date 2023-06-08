@@ -238,7 +238,7 @@ def create_project(request):
         project_name = request.POST.get('project_name')
         project_notes = request.POST.get('project_notes')
         project_link = request.POST.get('project_link')
-        p_image = request.FILES.get('p_image')
+        p_image = request.FILES.get('image')
 
         new_project = Projects(project_name=project_name,project_notes=project_notes,p_image=p_image,p_creator = request.user, project_link=project_link)
         new_project.save()

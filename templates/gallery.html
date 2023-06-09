@@ -152,6 +152,42 @@
 
 
      <!-- ------------------brands------------------- -->
+
+
+     !-- --------------comment box-------------- -->
+
+ <div class="comment-session">
+  {% for c in comm  %}
+  <div class="post-comment">
+    <div class="list">
+      <div class="user">
+        <div class="user-image"><img src="../static/images/avatar.jpg" alt=""></div>
+        <div class="user-meta">
+          <div class="name">{{c.username}}</div>
+          <div class="day"> {{c.date}}</div>
+
+        </div>
+      </div>
+      <div class="comment-post">{{c.comment}}</div>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="comment-box">
+    <div class="user">
+      <div class="image"><img src="../static/images/avatar.jpg" alt=""></div>
+      <div class="name">Archit</div>
+
+    </div>
+    <form action="" method="post">
+      {% csrf_token %}
+      <textarea id="comment" name="comment" cols="30" rows="10" placeholder="Your message"></textarea>
+      <button type="submit" name="com" class="comment-submit">Post Comment</button>
+    </form>
+  </div>
+ </div>
+ <br>
+ <br>
+ 
     
 
 

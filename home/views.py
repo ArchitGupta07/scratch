@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.db.models.functions import Random
 from django.contrib.auth import authenticate
 from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects,Favourites,Featured
-from .models import Lovers,Viewers,Downloaders, Friends
+from .models import Lovers,Viewers,Downloaders, Friends,Gcomments
 
 from django.contrib.auth.models import User
 from django.db.models import F
@@ -189,9 +189,11 @@ def gallery(request):
     # proj_gal = Projects.objects.all()
     proj_gal = Projects.objects.all().exclude(p_creator = request.user)
     profile = Profiles.objects.get(username = request.user)
+    comm = Pcomments.objects.all() 
     context={
         'proj_gal':proj_gal,
-        'profile':profile
+        'profile':profile,
+        'comm':comm
     }
     if 'view' in request.POST: 
 
@@ -209,6 +211,15 @@ def gallery(request):
         else:    
         
             return redirect(reverse('project_page', args=[p]))
+    elif 'com' in request.POST:       
+        comment = request.POST.get('comment')
+        # print(comment)
+
+        
+        user_comment = request.user
+        new_comment = Gcomments(username=user_comment,comment=comment,date = datetime.date.today())
+        new_comment.save()
+        return redirect('/gallery')
     
 
 

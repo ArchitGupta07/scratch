@@ -23,6 +23,9 @@ nav{
   text-align: right;
 
 }
+.logo{
+  padding: 0 10px 0 0;
+}
  
 nav ul{
   list-style-type: none;

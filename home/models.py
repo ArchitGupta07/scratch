@@ -80,6 +80,16 @@ class Pcomments(models.Model):
     
     def __str__(self):
         return str(self.username)
+    
+class Gcomments(models.Model):
+    
+    username = models.ForeignKey(User,max_length=100,null=False,on_delete=models.CASCADE)
+    gcomment = models.CharField(max_length=1000,default='None')
+    date = models.DateField()
+    # pname = models.ForeignKey(Projects,on_delete=models.CASCADE,default=None)
+    
+    def __str__(self):
+        return str(self.username)
      
 class Tags_projects(models.Model):
     

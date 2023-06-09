@@ -575,7 +575,7 @@ input:focus{
 }
 
 .comment-box textarea{
-  background: #eee;
+  background: #83ece0;
   width: -webkit-fill-available;
   height: 152px;
   margin: 10px 0;

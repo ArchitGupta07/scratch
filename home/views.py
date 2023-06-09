@@ -217,7 +217,7 @@ def gallery(request):
 
         
         user_comment = request.user
-        new_comment = Gcomments(username=user_comment,comment=comment,date = datetime.date.today())
+        new_comment = Gcomments(username=user_comment,gcomment=comment,date = datetime.date.today())
         new_comment.save()
         return redirect('/gallery')
     

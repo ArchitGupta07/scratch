@@ -189,7 +189,7 @@ def gallery(request):
     # proj_gal = Projects.objects.all()
     proj_gal = Projects.objects.all().exclude(p_creator = request.user)
     profile = Profiles.objects.get(username = request.user)
-    gcomm = Pcomments.objects.all() 
+    gcomm = Gcomments.objects.all() 
     context={
         'proj_gal':proj_gal,
         'profile':profile,

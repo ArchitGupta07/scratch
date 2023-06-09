@@ -47,7 +47,7 @@
   <div class="row">
     {% for p in d  %}
     <div class="col-4">
-      <img src="{{p.p_image.url}}" alt="">
+      <a href="/project_page/{{p.project_name}}"><img src="{{p.p_image.url}}" alt=""></a><img src="{{p.p_image.url}}" alt="">
       <h4>{{p.project_name}}</h4>
       <div class="rating"></div>
       <p>By : {{p.p_creator}}</p>

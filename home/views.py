@@ -83,7 +83,7 @@ def loginUser(request):
             user = authenticate(username=username,password=password)
             if user is not None:
                 login(request, user)
-                return redirect('/')
+                return redirect('/home')
             else:
                 return render(request,'login.html')
     if 'up' in request.POST:
@@ -105,12 +105,9 @@ def logoutUser(request):
 def home(request):
 
     user1 = request.user
-
-
-
     your_projects = Projects.objects.filter(p_creator=user1)
    
-    s = Featured.objects.all()[:3]
+    s = Featured.objects.all()[:4]
 
     project_names = [entry.project_n for entry in s]
 

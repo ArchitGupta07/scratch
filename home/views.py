@@ -189,11 +189,11 @@ def gallery(request):
     # proj_gal = Projects.objects.all()
     proj_gal = Projects.objects.all().exclude(p_creator = request.user)
     profile = Profiles.objects.get(username = request.user)
-    comm = Pcomments.objects.all() 
+    gcomm = Pcomments.objects.all() 
     context={
         'proj_gal':proj_gal,
         'profile':profile,
-        'comm':comm
+        'gcomm':gcomm
     }
     if 'view' in request.POST: 
 

@@ -1,211 +1,225 @@
-{% extends 'base.html' %}
-{% block title %}services{% endblock title %}
-{% block body %}
+<!DOCTYPE html>
 
-<div class="container">
-    <div class="d-flex gap-3 flex-nowrap">
-        <div class="col-xs-6">
-            <div class="text-center p-2"><h4>Published Projects By Other Developers</h4></div>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              {% for p in proj_gal  %}
-              <div class="col">
-                <div class="card shadow-sm h-100 border rounded">
-                  <div class="embed-responsive embed-responsive-16by9">
-                    <div class="image-wrapper">
-                      <img class="img-fluid border rounded" src="{{p.p_image.url}}" alt="">
-                      <!-- <img class="img-fluid border rounded" src="/static/project1.jpg" alt=""> -->
-                    </div>
-                  </div>
-                  <div class="card-body d-flex flex-column">
-                    <h4 class="card-text">{{p.project_name}}</h4>
-                    <!-- <h3 class="card-text">{{p.project_name}}</h3> -->
-                    <h6 class="card-text">Created By:- {{p.p_creator}}</h6>
-                    <p class="card-text">{{p.project_notes}}</p>
-                    <div class="mt-auto d-flex justify-content-between align-items-center">
-                      <form method="post" action="">
-                        {% csrf_token %}
-                        
-                      <div class="btn-group">
-                        <input type="hidden" name="proj_name" value ={{p.project_name}} >
-                        <button type="submit" class="btn btn-primary" name ="view" >View</button>
-                        <button type="submit" name='fav' class="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      </form>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects</title>
+    <link rel="stylesheet" href="../static/css/base.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Unicons CSS -->
+    
+   
+  </head>
+  <body>
+    
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <img class="logo" width="125px" src="../images/logo - Copy.png" alt="">
+        </div>
+        <nav>
+          <ul id="MenuItems">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="home.html">Projects</a></li>
+            <li><a href="home.html">Gallery</a></li>
+            <li><a href="home.html">Support</a></li>
+            <li><a href="home.html">About</a></li>
+          </ul>
+        </nav>
+        <img src="../images/cart.png" width="30px" height="30px" alt="">
+        <img src="../images/menu.png" class="menu-icon"  onclick="menuToggle()">
+      </div>
+      
+     </div>
 
-                      <!-- <small class="text-body-secondary">9 mins</small> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-                {% endfor %}
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-body-secondary">9 mins</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-body-secondary">9 mins</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-        
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-body-secondary">9 mins</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-body-secondary">9 mins</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-body-secondary">9 mins</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-        
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-body-secondary">9 mins</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-body-secondary">9 mins</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                    <div class="card-body">
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-body-secondary">9 mins</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <div class="small-container">
+            <h2 class="title">Your Gallery</h2>
+
+        <div class="row row-2">
+        <h2>All Projects</h2>
+        <select name="" id="">
+            <option value="">Default Shorting</option>
+            <option value="">Sort by Name</option>
+            <option value="">Sort by date created</option>
+            
+        </select>
+        </div>
+        <div class="row">
+          {% for p in proj_gal  %}
+            <div class="col-4">
+                <a href="/project_page/{{p.project_name}}"><img src="{{p.p_image.url}}" alt=""></a>
+                <h4>{{p.project_name}}</h4>                
+                <p>By : {{p.p_creator}}</p>
+                <div class="rating">{{p.num_likes}} Likes {{p.num_views}} views</div>
             </div>
-          
-
-        <div class="col-xs-6">
-            <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary py-5" style="width: 380px;">
-                
-                <div class="list-group list-group-flush border-bottom scrollarea border rounded">
-                    <div  class="list-group-item list-group-item-action  py-3 lh-sm " aria-current="true">
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                            <!-- <strong class="mb-1">SampleProjectsTeam</strong> -->
-                            <!-- <small>Wed</small> -->
-                        </div>
-                        <div class="col-10 mb-1 small">
-                          <img class="rounded-circle shadow-1-strong me-3"
-                          src="{{profile.image.url}}" alt="avatar" width="60"
-                          height="60" />
-                          <br>
-                          <br>
-                          Gallery Owner  : {{ profile.username }} 
-                            
-
-                        </div>
-                      </div>
-                    
-                    <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                            <strong class="mb-1">Gallery Description</strong>
-                            <!-- <small class="text-body-secondary">Tues</small> -->
-                        </div>
-                        <div class="col-10 mb-1 small">
-                          We are trying to figure put which new projects should go in the sample projects library. This is a set of projects not made by us that we are considering fro inclusion.
-                        </div>
-                    </a>
-
-                </div>
+            {% endfor %} 
+            <div class="col-4">
+                <img src="../static/images/project1.jpg" alt="">
+                <h4>Red Printed T-shirts</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project2.jpg" alt="">
+                <h4>Red Printed T-shirts</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project4.jpg" alt="">
+                <h4>Red Printed T-shirts</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <img src="../static/images/project5.jpg" alt="">
+                <h4>Red Printed T-shirts</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project2.jpg" alt="">
+                <h4>Red Printed T-shirts</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project1.jpg" alt="">
+                <h4>Red Printed T-shirts</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project4.jpg" alt="">
+                <h4>Red Printed T-shirts</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <img src="../static/images/project2.jpg" alt="">
+                <h4>Red Printed T-shirts</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project2.jpg" alt="">
+                <h4>Red Printed T-shirts</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project2.jpg" alt="">
+                <h4>Red Printed T-shirts</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project2.jpg" alt="">
+                <h4>Red Printed T-shirts</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
             </div>
         </div>
 
+      <div class="page-btn">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>&#8594</span>
+      </div>
+
     </div>
-</div>
-</div>
-<!-- < src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-    crossorigin="anonymous"></script>
 
-<script src="sidebars.js"></script> -->
+  <!-- offer -->
 
-{% endblock body %}
+
+   
+
+     <!-- ----------Testimonial ---------------------- -->
+
+    
+
+
+
+     <!-- ------------------brands------------------- -->
+    
+
+
+     <!-- ------------footer ---------------------- -->
+
+     <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col-1">
+            <h3>Download Our App</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <div class="app-logo">
+              <img src="../images/play-store.png" alt="">
+              <img src="../images/app-store.png" alt="">
+            </div>
+          </div>
+          <div class="footer-col-2">
+            <img src="../images/logo-white.png" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+          <div class="footer-col-3">
+            <h3>Useful Links</h3>
+            <ul>
+              <li>Coupons</li>
+              <li>Blog Post</li>
+              <li>Policy </li>
+              <li>Patreon</li>
+            </ul>
+          </div>
+          <div class="footer-col-4">
+            <h3>Follow Us</h3>
+            <ul>
+              <li>Facebook</li>
+              <li>Instagram</li>
+              <li>Twitter </li>
+              <li>Youtube</li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright 2023 - Archit Gupta</p>
+      </div>
+     </div>
+
+
+    
+ 
+    
+      
+    <!-- Javascript -->
+    
+    <!-- js for toggle menu -->
+      <script>
+
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+        function menuToggle(){
+          if( MenuItems.style.maxHeight == "0px")
+          {
+            MenuItems.style.maxHeight = "200px";
+
+          }
+          else{
+            MenuItems.style.maxHeight = "0px";
+          }
+        }
+
+
+ 
+      </script>
+   
+  </body>
+</html>

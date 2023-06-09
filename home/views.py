@@ -105,7 +105,7 @@ def logoutUser(request):
 def home(request):
 
     user1 = request.user
-    your_projects = Projects.objects.filter(p_creator=user1)[:4]
+    your_projects = Projects.objects.filter(p_creator=user1)[:3]
    
     s = Featured.objects.all()[:4]
 

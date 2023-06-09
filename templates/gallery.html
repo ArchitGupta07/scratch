@@ -157,18 +157,18 @@
      <!-- !-- --------------comment box-------------- --> 
 
  <div class="comment-session">
-  {% for c in gcomm  %}
+  {% for d in gcomm  %}
   <div class="post-comment">
     <div class="list">
       <div class="user">
         <div class="user-image"><img src="../static/images/avatar.jpg" alt=""></div>
         <div class="user-meta">
-          <div class="name">{{c.username}}</div>
-          <div class="day"> {{c.date}}</div>
+          <div class="name">{{d.username}}</div>
+          <div class="day"> {{d.date}}</div>
 
         </div>
       </div>
-      <div class="comment-post">{{c.comment}}</div>
+      <div class="comment-post">{{d.comment}}</div>
     </div>
   </div>
   {% endfor %}

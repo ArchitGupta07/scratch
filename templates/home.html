@@ -45,13 +45,15 @@
 <div class="small-container">
   <h2 class="title">Featured Projects</h2>
   <div class="row">
+    {% for p in d  %}
     <div class="col-4">
       <img src="../static/images/project2.jpg" alt="">
-      <h4>Project_injected</h4>
+      <h4>{{p.project_name}}</h4>
       <div class="rating"></div>
-      <p>Notes</p>
+      <p>By : {{p.p_creator}}</p>
     </div>
-    <div class="col-4">
+    {% endfor %} 
+    <!-- <div class="col-4">
       <img src="../static/images/project4.jpg" alt="">
       <h4>Project_injected</h4>
       <div class="rating"></div>
@@ -68,7 +70,7 @@
       <h4>Project_injected</h4>
       <div class="rating"></div>
       <p>Notes</p>
-    </div>
+    </div> -->
   </div>
 
      <!-- Latest Projects -->

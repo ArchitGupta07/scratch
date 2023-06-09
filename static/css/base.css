@@ -26,16 +26,15 @@ nav{
 .logo{
   cursor: pointer;
   padding: 0 10px 0 0;
-  transition: color 0.5s;
+  
 }
 
 .logo h3 b{
   color: #78706f;;
+  transition: color 0.5s;
 }
-.logo:hover{
+.logo h3 b:hover{
   color: #9f9b9b;
-
-
 }
  
 nav ul{

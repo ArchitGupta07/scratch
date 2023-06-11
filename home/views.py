@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate
 from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects,Favourites,Featured
 from .models import Lovers,Viewers,Downloaders, Friends,Gcomments
 
+from django.contrib import messages 
+
 from django.contrib.auth.models import User
 from django.db.models import F
 from django.contrib.auth import logout, login
@@ -112,10 +114,13 @@ def home(request):
     project_names = [entry.project_n for entry in s]
 
     d = Projects.objects.filter(project_name__in=project_names)
-
-    random_row = Projects.objects.annotate(random_number=Random()).order_by('random_number').first()
     
-    random_proj = Projects.objects.filter(p_creator = random_row.p_creator)
+    
+    random_row = Projects.objects.annotate(random_number=Random()).order_by('random_number').first()
+
+    if random_row is not None:
+    
+        random_proj = Projects.objects.filter(p_creator = random_row.p_creator)
     context={
         'd':d,
         'random_row':random_row,
@@ -284,10 +289,15 @@ def project_page(request,project_name):
         p = Projects.objects.get(project_name=proj.project_name)
         print(p,' Archit')
         user_comment = request.user
-        new_comment = Pcomments(username=user_comment,comment=comment,date = datetime.date.today(), pname = p)
+        new_comment = Pcomments(username=user_comment,comment=comment, pname = p)
         new_comment.save()
 
+        messages.success(request, "Your comment has been posted successfully")
+
         return redirect(reverse('project_page', args=[project_name]))
+    
+    
+    
     elif 'tags' in request.POST:
         tag = request.POST.get('tag')
         t = Projects.objects.get(project_name=proj.project_name)       

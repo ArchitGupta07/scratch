@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.utils.timezone import now
 # Create your models here.   
 
 
@@ -47,9 +48,12 @@ class Projects(models.Model):
 
     # comments = models.CharField(max_length=100,default='None')
     # tags = models.CharField(max_length=100,default='None')
+
+    
 class Profiles(models.Model):
     first_name = models.CharField(max_length=100,null=False)
     last_name = models.CharField(max_length=100,null=False,default='None')
+    father = models.CharField(max_length=100,null=False,default='None')
     username = models.CharField(max_length=100,null=False)    
     password = models.CharField(max_length=100,null=False)
     location = models.CharField(max_length=100, default='None')
@@ -73,10 +77,15 @@ class Gallery(models.Model):
 
 class Pcomments(models.Model):
     
+    id = models.AutoField(primary_key=True,default=1)    
     username = models.ForeignKey(User,max_length=100,null=False,on_delete=models.CASCADE)
     comment = models.CharField(max_length=1000,default='None')
-    date = models.DateField()
+    
     pname = models.ForeignKey(Projects,on_delete=models.CASCADE,default=None)
+    parent = models.ForeignKey('self',on_delete=models.CASCADE, null=True)    
+    #   in above line we used 'self' as we wanted to make itself the foreign key
+    date = models.DateTimeField(default=now)
+
     
     def __str__(self):
         return str(self.username)

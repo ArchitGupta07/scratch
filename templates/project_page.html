@@ -213,13 +213,26 @@
         </div>
       </div>
       <div class="comment-post">{{c.comment}}</div>
+
+      <div class="reply-com">
+        <button class="collapsible">Reply</button>
+        <div class="content">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, qui.</p>
+          <form action="" method="post">
+            {% csrf_token %}
+            <textarea id="comment" name="comment" cols="30" rows="2" placeholder="Your message"></textarea>
+            <button type="submit" name="com" class="comment-submit">Post Comment</button>
+          </form>       
+        </div>
+      </div>
     </div>
+   
   </div>
   {% endfor %}
   <div class="comment-box">
     <div class="user">
       <div class="image"><img src="../static/images/avatar.jpg" alt=""></div>
-      <div class="name">Archit</div>
+      <div class="name">{{user.username}}</div>
 
     </div>
     <form action="" method="post">
@@ -317,6 +330,25 @@
     element.classList.toggle("liked");
   }
 </script>
+
+
+<!-- --------collapsible reply to comment------------ -->
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  // var i;
+  
+  // for (i = 0; i < coll.length; i++) {
+    coll[0].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } 
+    });
+  // }
+  </script>
 
 
 

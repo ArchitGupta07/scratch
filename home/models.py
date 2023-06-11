@@ -156,10 +156,94 @@ class Downloaders(models.Model):
     
 
 class Friends(models.Model):
-     friend = models.ForeignKey(Profiles,max_length=100, null=True,on_delete=models.CASCADE)
-     friend_s = models.ForeignKey(User,max_length=100, null=True,on_delete=models.CASCADE)
-     def __str__(self):
-            return self.first_name+" "+self.last_name
+     
+    user = models.OneToOneField(User,on_delete=models.CASCADE, related_name="user", default=None )    
+    friends = models.ManyToManyField(User, blank=True, related_name="friends")
+
+
+
+    def __str__(self):
+        return self.user.username
+    
+    def add_friend(self,account):
+        if not account in self.friends.all():
+            self.friends.add(account)
+            self.save()
+    
+
+    def remove_friend(self,account):
+         
+
+         if account in self.friends.all():
+              self.friends.remove(account)
+     
+    def unfriend(self,removee):
+         
+
+         #person terminating the friendship
+
+         remover_friend_list = self        
+
+         remover_friend_list.remove_friend(removee)
+
+         friends_list = Friends.objects.get(user = removee)
+
+         friends_list.remove_friend(self.user)
+    
+
+    def is_mutual_friend(self,friend):
+         
+
+         if friend in self.friends.all():
+              return True
+         return False
+
+class FriendRequest(models.Model):
+     
+     sender = models.ForeignKey(User,on_delete=models.CASCADE, related_name="sender")
+     reciever = models.ForeignKey(User,on_delete=models.CASCADE, related_name="reciever")
+
+     is_active = models.BooleanField(blank=True,null=False,default=True)
+     timestamp = models.DateTimeField(auto_now_add = True)
+
+     def __str__(self) :
+          return self.sender.username
+     
+
+     def accept(self):
+          
+          reciever_friend_list = Friends.objects.get(user= self.reciever)
+
+          if reciever_friend_list:
+               reciever_friend_list.add_friend(self.sender)
+               sender_friend_list = Friends.objects.get(user = self.sender)
+
+               if sender_friend_list:
+                    sender_friend_list.add_friend(self.reciever)
+                    self.is_active = False
+                    self.save()
+
+     def decline(self):
+          
+          self.is_active = False
+          self.save()
+     
+     def cancel(self):
+          
+
+          self.is_active = False
+          self.save()
+               
+     
+
+
+
+
+
+         
+
+
+
 # class Tags_projects(models.Model):
 #      def __str__(self):
 #             return self.first_name+" "+self.last_name

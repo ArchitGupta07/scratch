@@ -1,3 +1,6 @@
+{% load extras %}
+
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -215,16 +218,30 @@
       <div class="comment-post">{{c.comment}}</div>
 
       <div class="reply-com">
-        <button class="collapsible">Reply</button>
-        <div class="content">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, qui.</p>
+        <button class="collapsible">Reply</button>    
+
+       
+        <div class="content" >
+         
           <form action="" method="post">
             {% csrf_token %}
             <textarea id="comment" name="comment" cols="30" rows="2" placeholder="Your message"></textarea>
-            <button type="submit" name="com" class="comment-submit">Post Comment</button>
+            <input type="hidden" name="parent_id" value="{{c.id}}">
+          
+            <button type="submit" name="com" class="comment-submit">Post a Reply</button>
           </form>       
         </div>
       </div>
+    
+    </div>
+    <div class="replies">
+          {% for r in replydict|get_val:c.id  %}
+              
+                {{r.comment}}
+                <br>
+        
+        
+          {% endfor %}
     </div>
    
   </div>
@@ -238,7 +255,8 @@
     <form action="" method="post">
       {% csrf_token %}
       <textarea id="comment" name="comment" cols="30" rows="10" placeholder="Your message"></textarea>
-      <button type="submit" name="com" class="comment-submit">Post Comment</button>
+      <input type="hidden" name="parent_id" value="">
+      <button type="submit" name="com" {{c.id}}class="comment-submit">Post Comment</button>
     </form>
   </div>
  </div>

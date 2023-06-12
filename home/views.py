@@ -4,7 +4,8 @@ from django.contrib.auth import authenticate
 from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects,Favourites,Featured
 from .models import Lovers,Viewers,Downloaders, Friends,Gcomments
 
-from django.contrib import messages 
+from django.contrib import messages
+from home.templatetags import extras 
 
 from django.contrib.auth.models import User
 from django.db.models import F
@@ -267,17 +268,31 @@ def project_page(request,project_name):
 
     proj = Projects.objects.filter(project_name=project_name).first()
     print('Archit')
-    comm = Pcomments.objects.filter(pname__project_name=project_name)   #Doubt Field ‘id’ expected a number but got ‘Free’  link - In this updated code, pname__project_name represents the lookup condition where project_name matches the project_name field in the related Projects object.Please make sure that the Pcomments model has a field named pname that refers to the Projects model using a ForeignKey or similar relationship. Additionally, ensure that project_name contains the desired project name value for the lookup.
+    comm = Pcomments.objects.filter(pname__project_name=project_name, parent = None)   #Doubt Field ‘id’ expected a number but got ‘Free’  link - In this updated code, pname__project_name represents the lookup condition where project_name matches the project_name field in the related Projects object.Please make sure that the Pcomments model has a field named pname that refers to the Projects model using a ForeignKey or similar relationship. Additionally, ensure that project_name contains the desired project name value for the lookup.
     # print(comm)
     # print('Archit2')
     # prof = Profiles.objects.filter(username=request.user).first()
+
+    replies = Pcomments.objects.filter(pname__project_name=project_name).exclude(parent=None)  
+
+    replydict = {}
+    for reply in replies:
+        if reply.parent.id  not in replydict.keys():
+            replydict[reply.parent.id] = [reply]
+        else:
+            replydict[reply.parent.id].append(reply)
+    
+    print(replydict)
+
 
     tagg = Tags_projects.objects.filter(p_tag_name__project_name = project_name)
     context = {
         'proj':proj,
         # 'prof':prof,
         'comm':comm,
-        'tagg':tagg
+        'tagg':tagg,
+        'replies':replies,
+        'replydict':replydict
     }
 
 
@@ -289,10 +304,22 @@ def project_page(request,project_name):
         p = Projects.objects.get(project_name=proj.project_name)
         print(p,' Archit')
         user_comment = request.user
-        new_comment = Pcomments(username=user_comment,comment=comment, pname = p)
-        new_comment.save()
+        
 
-        messages.success(request, "Your comment has been posted successfully")
+        parentSno = request.POST.get('parent_id')
+
+        if parentSno == "":
+            new_comment = Pcomments(username=user_comment,comment=comment, pname = p)
+            new_comment.save()
+            messages.success(request, "Your comment has been posted successfully")
+        else :
+            parent = Pcomments.objects.get(id = parentSno)
+            new_comment = Pcomments(username=user_comment,comment=comment, pname = p, parent = parent)
+            new_comment.save()
+            messages.success(request, "Your Reply has been posted successfully")
+
+
+       
 
         return redirect(reverse('project_page', args=[project_name]))
     

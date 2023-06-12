@@ -620,6 +620,33 @@ input:focus{
 .comment-box .comment-submit:hover{
   background: #0076bf;
 }
+
+.reply-com {
+  display: grid;
+  justify-content: end;
+
+}
+.reply-com .content{
+  width: 100%;
+  background: transparent;
+  display: grid;
+  align-items: end;
+
+}
+
+.reply-com .content textarea{
+  border-radius: 5px;
+
+}
+.replies{
+  background:linear-gradient(45deg, #edc466, #18a0ea); ;
+  margin-left: 30px;
+  border-radius: 5px;
+  display: grid;
+  justify-content: end;
+}
+
+
 .collapsible {
   background-color: transparent;
   color: rgb(247, 234, 234);

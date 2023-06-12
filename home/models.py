@@ -77,7 +77,7 @@ class Gallery(models.Model):
 
 class Pcomments(models.Model):
     
-    id = models.AutoField(primary_key=True,default=1)    
+    id = models.AutoField(primary_key=True)    
     username = models.ForeignKey(User,max_length=100,null=False,on_delete=models.CASCADE)
     comment = models.CharField(max_length=1000,default='None')
     
@@ -88,7 +88,7 @@ class Pcomments(models.Model):
 
     
     def __str__(self):
-        return str(self.username)
+        return str(self.username) + " " + str(self.comment)
     
 class Gcomments(models.Model):
     

@@ -218,11 +218,8 @@
       <div class="comment-post">{{c.comment}}</div>
 
       <div class="reply-com">
-        <button class="collapsible">Reply</button>    
-
-       
-        <div class="content" >
-         
+        <button class="collapsible">Reply</button>       
+        <div class="content" >         
           <form action="" method="post">
             {% csrf_token %}
             <textarea id="comment" name="comment" cols="30" rows="2" placeholder="Your message"></textarea>
@@ -234,17 +231,31 @@
       </div>
     
     </div>
+    {% for r in replydict|get_val:c.id  %}
     <div class="replies">
-          {% for r in replydict|get_val:c.id  %}
-              
-                {{r.comment}}
-                <br>
-        
-        
-          {% endfor %}
+          
+
+          <div class="user">
+            <div class="user-image"><img src="../static/images/avatar.jpg" alt=""></div>
+            <div class="user-meta">
+              <div class="name">{{r.username}}</div>
+              <div class="day"> {{r.date}}</div>
+    
+            </div>
+          </div>
+          <div class="comment-post"><a href="" style="color: rgb(19, 122, 232);">@{{r.parent.username}}</a> {{r.comment}}</div>                
+             
+            <hr>  
+            
+         
+          
+          
     </div>
+    <br>
+    {% endfor %}
    
   </div>
+  
   {% endfor %}
   <div class="comment-box">
     <div class="user">
@@ -355,8 +366,8 @@
   var coll = document.getElementsByClassName("collapsible");
   // var i;
   
-  // for (i = 0; i < coll.length; i++) {
-    coll[0].addEventListener("click", function() {
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
       this.classList.toggle("active");
       var content = this.nextElementSibling;
       if (content.style.maxHeight){
@@ -365,7 +376,7 @@
         content.style.maxHeight = content.scrollHeight + "px";
       } 
     });
-  // }
+  }
   </script>
 
 

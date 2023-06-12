@@ -621,6 +621,8 @@ input:focus{
   background: #0076bf;
 }
 
+  /* -------------------replies to comments-------------- */
+  
 .reply-com {
   display: grid;
   justify-content: end;
@@ -634,6 +636,7 @@ input:focus{
 
 }
 
+
 .reply-com .content textarea{
   border-radius: 5px;
 
@@ -643,7 +646,22 @@ input:focus{
   margin-left: 30px;
   border-radius: 5px;
   display: grid;
-  justify-content: end;
+  /* justify-content: end; */
+  padding: 10px;
+  overflow: hidden;
+}
+.replies .user{
+  display: flex;
+  /* width: min-content; */
+  /* display: flex; */
+  padding: 8px;
+  overflow: hidden;
+}
+.replies .user img{
+  height: 38px;
+  width: 38px;
+  margin-right: 10px;
+  border-radius: 50%;
 }
 
 

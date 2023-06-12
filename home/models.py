@@ -244,7 +244,10 @@ class FriendRequest(models.Model):
           self.save()
                
      
-
+class Followers(models.Model):
+    def __str__(self):
+        return self.first_name+" "+self.last_name
+     
 
 
 

@@ -210,6 +210,30 @@ img{
   /* border: 1px solid #000; */
   border-radius: 15px;
 }
+
+
+/* --------------Activities------------------------- */
+
+.activity-center{
+  margin: auto;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.activity-center .component{
+
+  margin: 20px;
+}
+
+
+
+
+
+
+
+
+
+
  /* ---------offer--------- */
 .offer{
   background: radial-gradient(#fff,#ffd6d6);

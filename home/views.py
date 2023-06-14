@@ -244,6 +244,11 @@ def about(request):
     return render(request,'about.html')
 
 
+def activity(request):
+    return render(request,'activity.html')
+
+
+
 
 
 def create_project(request):

@@ -249,10 +249,12 @@ class FriendRequest(models.Model):
                
      
 class Activities(models.Model):
-
     activity =  models.CharField(max_length=500,default='None')
+    project_involved = models.ForeignKey(Projects,null=True,on_delete=models.CASCADE)
 
-    ready_by_user = models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE,related_name='ready_by_user')
+    user_involved = models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE,related_name='user_involved')
+
+    read_by_user = models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE,related_name='read_by_user')
     # ready_by_all = models.ForeignKey(User,max_length=100,null=True,on_delete=models.CASCADE,related_name='act_creator')
 
     status = models.BooleanField(default=False)

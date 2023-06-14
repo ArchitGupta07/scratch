@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.db.models.functions import Random
 from django.contrib.auth import authenticate
 from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects,Favourites,Featured
-from .models import Lovers,Viewers,Downloaders, Friends,Gcomments
+from .models import Lovers,Viewers,Downloaders, Friends,Gcomments,Activities
 
 from django.contrib import messages
 from home.templatetags import extras 
@@ -245,6 +245,9 @@ def about(request):
 
 
 def activity(request):
+    all_active = Activities.objects
+
+
     return render(request,'activity.html')
 
 

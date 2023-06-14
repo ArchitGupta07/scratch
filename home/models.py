@@ -64,10 +64,14 @@ class Profiles(models.Model):
     email = models.EmailField(default='None')
     friend = models.ManyToManyField(User, default = None, blank=True, related_name='friend')
     proj_created = models.ManyToManyField(Projects, default = None, blank=True, related_name='proj_created')
+    follows = models.ManyToManyField(User, default = None, blank=True, related_name='follows')
     
 
     def __str__(self):
         return self.first_name+" "+self.last_name
+    @property
+    def num_followers(self):
+        return self.followers.all().count()
     
 
 class Gallery(models.Model):

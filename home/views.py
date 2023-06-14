@@ -286,13 +286,21 @@ def project_page(request,project_name):
 
 
     tagg = Tags_projects.objects.filter(p_tag_name__project_name = project_name)
+
+
+    profile = Profiles.objects.get(username=request.user)
+
+
+
+
     context = {
         'proj':proj,
         # 'prof':prof,
         'comm':comm,
         'tagg':tagg,
         'replies':replies,
-        'replydict':replydict
+        'replydict':replydict,
+        'profile':profile
     }
 
 
@@ -359,6 +367,25 @@ def project_page(request,project_name):
             if like.value == 'Like':
                 like.value = 'Unlike'
             else:like.value = 'Like'         
+        return redirect(reverse('project_page', args=[project_name]))
+    
+    elif 'follow' in request.POST:
+        user = request.user
+
+        
+        f =  Profiles.objects.get(username=proj.p_creator)
+        
+        if user in f.follows.all():
+            f.follows.remove(user)
+        else:
+            f.follows.add(user)
+
+        # like, created = Lovers.objects.get_or_create(lover=user,p_name = l)
+
+        # if not created:
+        #     if like.value == 'Like':
+        #         like.value = 'Unlike'
+        #     else:like.value = 'Like'         
         return redirect(reverse('project_page', args=[project_name]))
     
 

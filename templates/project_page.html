@@ -129,7 +129,19 @@
         <button type="submit" class="impbtn" name="down">Download</button>
       <button type="submit" class="impbtn" name="remix">Remix this</button>
       <button type="submit" class="impbtn" name="fav">Add To Favourites</button>
-      <button type="submit" class="impbtn" name="follow">Follow Creator</button>
+
+      {% if proj.p_creator in profile.follows.all %}
+
+
+
+      <button type="submit" class="impbtn" name="follow" value = "unfollow">Unfollow <p style="color: #15a9e9;">@{{proj.p_creator}}</p></button>
+      {% else %}
+      <button type="submit" class="impbtn" name="follow" value="follow">Follow <p style="color: #15a9e9;">@{{proj.p_creator}}</p></button>
+
+      {% endif %}
+
+
+
       </form>
 
 

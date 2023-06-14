@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Profiles,Projects,Gallery,Pcomments,Tags_projects,Favourites,Lovers,Viewers,Featured
-from .models import Projects_text,Downloaders,Friends,Gcomments
+from .models import Projects_text,Downloaders,Friends,Gcomments,Friends,FriendRequest 
 
 # Register your models here.
 admin.site.register(Profiles)
@@ -16,3 +16,5 @@ admin.site.register(Projects_text)
 admin.site.register(Downloaders)
 admin.site.register(Friends)
 admin.site.register(Gcomments)
+admin.site.register(Friends)
+admin.site.register(FriendRequest)

@@ -292,9 +292,15 @@ def create_project(request):
         new_project = Projects(project_name=project_name,project_notes=project_notes,p_image=p_image,p_creator = request.user, project_link=project_link)
         new_project.save()
 
+        print(new_project.project_name)
 
-        act = creator + " " + "created a project called "+ project_name
-        new_activity = Activities(activity=act,project_involved = project_name,user_involved = request.user,status = False)
+        proj_created = Projects.objects.get(project_name = new_project.project_name)
+
+        # above proj_created is written because below new activity was gven error : - Activities.project_involved must be a Projects instance
+
+
+        act = str(creator) + " " + "created a project called "+ str(project_name)
+        new_activity = Activities(activity=act,project_involved = proj_created,user_involved = request.user,status = False)
         new_activity.save()
 
 
@@ -334,7 +340,8 @@ def project_page(request,project_name):
     tagg = Tags_projects.objects.filter(p_tag_name__project_name = project_name)
 
 
-    profile = Profiles.objects.get(username=request.user)
+    profile = Profiles.objects.get(username=proj.p_creator)
+    current_user = request.user
 
 
 
@@ -346,7 +353,8 @@ def project_page(request,project_name):
         'tagg':tagg,
         'replies':replies,
         'replydict':replydict,
-        'profile':profile
+        'profile':profile,
+        'current_user':current_user
     }
 
 
@@ -402,8 +410,8 @@ def project_page(request,project_name):
 
         # -----activity----
 
-        act = proj.p_creator + " " + "liked project "+ project_name
-        new_activity = Activities(activity=act,project_involved = project_name,user_involved = proj.p_creator,status = False)
+        act = str(proj.p_creator) + " " + "liked project "+ str(project_name)
+        new_activity = Activities(activity=act,project_involved = proj.project_name,user_involved = proj.p_creator,status = False)
         new_activity.save()
         # -----activity----
 
@@ -442,7 +450,7 @@ def project_page(request,project_name):
 
         # -----activity----
 
-            act_follow = user + " " + "started following you"
+            act_follow = str(user) + " " + "started following you"
             new_activity = Activities(activity=act_follow,user_involved = user,status = False)
             new_activity.save()
         # -----activity----

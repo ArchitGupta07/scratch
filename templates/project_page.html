@@ -130,7 +130,7 @@
       <button type="submit" class="impbtn" name="remix">Remix this</button>
       <button type="submit" class="impbtn" name="fav">Add To Favourites</button>
 
-      {% if proj.p_creator in profile.follows.all %}
+      {% if current_user in profile.follows.all %}
 
 
 

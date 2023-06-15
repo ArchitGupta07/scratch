@@ -212,6 +212,9 @@ img{
 }
 
 
+
+
+
 /* --------------Activities------------------------- */
 
 .activity-center{
@@ -219,10 +222,15 @@ img{
   display: grid;
   align-items: center;
   justify-content: center;
+  
 }
 .activity-center .component{
 
   margin: 20px;
+  padding: 10px;
+  /* border: 1px solid black; */
+  border-radius: 20px;
+  background: radial-gradient(#fff,#e09c43);
 }
 
 
@@ -235,6 +243,7 @@ img{
 
 
  /* ---------offer--------- */
+
 .offer{
   background: radial-gradient(#fff,#ffd6d6);
   margin-top: 80px;

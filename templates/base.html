@@ -44,6 +44,45 @@
         
         <img src="../static/images/menu.png" class="menu-icon"  onclick="menuToggle()">
       </div>
+
+
+      <!-- ------------------Activty notification----------------- -->
+
+
+      <div class="activity-center">
+        <div class="component">
+        <div class="public">
+            <h5>Trending</h5>
+            {% for all in all_active   %}            
+
+            <p>Activty : {{all.activity}}</p>   
+
+            {% endfor %}
+            <p>Activty : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, tempora?</p>
+            
+
+        </div>
+        <div class="private">
+            <h5>For you</h5>
+
+            {% for p in personal   %}
+
+            {% if p.user_involved in profile.follows.all %}
+
+            <p>Activty : {{p.activity}}</p>            
+            
+            {% endif %}   
+            {% endfor %}         
+            <p>Activty : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, tempora?</p>
+        </div>
+      </div>
+    </div>
+     <!-- ------------------Activty notification  End----------------- -->
+
+
+
+     <!-- ------------------Create project componenent----------------- -->
+
       <div class="row">
 
         <div class="col-2">

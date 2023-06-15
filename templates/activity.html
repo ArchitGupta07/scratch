@@ -14,18 +14,35 @@
         <div class="component">
         <div class="public">
             <h5>Trending</h5>
+            <p>{{trending_proj.project_name}} is trending with maximum likes. You should check this out</p>
+            {% for all in all_active   %}            
+
+            <p>Activty : {{all.activity}}</p>   
+
+            {% endfor %}
             <p>Activty : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, tempora?</p>
-            <p>Activty : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, tempora?</p>
-            <p>Activty : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, tempora?</p>
-            <p>Activty : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, tempora?</p>
+            
 
         </div>
         <div class="private">
             <h5>For you</h5>
+
+            {% for p in personal   %}
+
+            {% if p.user_involved in profile.follows.all %}
+
+            <p>Activty : {{p.activity}}</p>            
+            
+            {% endif %}
+            
+            
+            
+            {% endfor %}
+
+
+            
             <p>Activty : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, tempora?</p>
-            <p>Activty : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, tempora?</p>
-            <p>Activty : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, tempora?</p>
-            <p>Activty : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, tempora?</p>
+          
 
 
         </div>

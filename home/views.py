@@ -6,6 +6,7 @@ from .models import Lovers,Viewers,Downloaders, Friends,Gcomments,Activities
 
 from django.contrib import messages
 from home.templatetags import extras 
+from django.db.models import Count
 
 from django.contrib.auth.models import User
 from django.db.models import F
@@ -114,19 +115,35 @@ def home(request):
 
     project_names = [entry.project_n for entry in s]
 
-    d = Projects.objects.filter(project_name__in=project_names)
-    
+    d = Projects.objects.filter(project_name__in=project_names)    
     
     random_row = Projects.objects.annotate(random_number=Random()).order_by('random_number').first()
 
-    if random_row is not None:
-    
+    if random_row is not None:    
         random_proj = Projects.objects.filter(p_creator = random_row.p_creator)
+
+
+    # ---------Activity-------------
+    trending_proj = Projects.objects.annotate(num_like=Count('liked')).order_by('-num_like').first()
+
+
+    all_active = Activities.objects.filter(status = True)[:3]
+    personal = Activities.objects.all()[:3]   
+    profile = Profiles.objects.get(username=request.user)
+
+    # ---------Activity end-------------
+
+
+    
     context={
         'd':d,
         'random_row':random_row,
         'random_proj':random_proj,
-        'your_projects':your_projects
+        'your_projects':your_projects,
+        "all_active": all_active,
+        "personal": personal,
+        "profile": profile,
+        "trending_proj": trending_proj
         
     }  
     if 'view' in request.POST: 
@@ -245,10 +262,18 @@ def about(request):
 
 
 def activity(request):
-    all_active = Activities.objects
+    all_active = Activities.objects.filter(status = True)
+    personal = Activities.objects.all()    
+    profile = Profiles.objects.get(username=request.user)
+
+    context = {
+       "all_active": all_active,
+       "personal": personal,
+       "profile": profile
+    }
 
 
-    return render(request,'activity.html')
+    return render(request,'activity.html',context)
 
 
 
@@ -262,8 +287,21 @@ def create_project(request):
         project_link = request.POST.get('project_link')
         p_image = request.FILES.get('image')
 
+        creator = request.user
+
         new_project = Projects(project_name=project_name,project_notes=project_notes,p_image=p_image,p_creator = request.user, project_link=project_link)
         new_project.save()
+
+
+        act = creator + " " + "created a project called "+ project_name
+        new_activity = Activities(activity=act,project_involved = project_name,user_involved = request.user,status = False)
+        new_activity.save()
+
+
+
+
+
+
         return redirect('/')
     else:
         return render(request,'create_project.html')
@@ -361,6 +399,19 @@ def project_page(request,project_name):
         return redirect(reverse('project_page', args=[project_name]))
     
     elif 'like' in request.POST:
+
+        # -----activity----
+
+        act = proj.p_creator + " " + "liked project "+ project_name
+        new_activity = Activities(activity=act,project_involved = project_name,user_involved = proj.p_creator,status = False)
+        new_activity.save()
+        # -----activity----
+
+
+
+
+
+    
         user = request.user
         l =  Projects.objects.get(project_name=proj.project_name)
         
@@ -387,6 +438,15 @@ def project_page(request,project_name):
             f.follows.remove(user)
         else:
             f.follows.add(user)
+
+
+        # -----activity----
+
+            act_follow = user + " " + "started following you"
+            new_activity = Activities(activity=act_follow,user_involved = user,status = False)
+            new_activity.save()
+        # -----activity----
+            
 
         # like, created = Lovers.objects.get_or_create(lover=user,p_name = l)
 

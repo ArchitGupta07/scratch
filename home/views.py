@@ -318,7 +318,7 @@ def create_project(request):
 
 def project_page(request,project_name):
 
-    proj = Projects.objects.filter(project_name=project_name).first()
+    proj = Projects.objects.get(project_name=project_name)
     print('Archit')
     comm = Pcomments.objects.filter(pname__project_name=project_name, parent = None)   #Doubt Field ‘id’ expected a number but got ‘Free’  link - In this updated code, pname__project_name represents the lookup condition where project_name matches the project_name field in the related Projects object.Please make sure that the Pcomments model has a field named pname that refers to the Projects model using a ForeignKey or similar relationship. Additionally, ensure that project_name contains the desired project name value for the lookup.
     # print(comm)
@@ -411,7 +411,7 @@ def project_page(request,project_name):
         # -----activity----
 
         act = str(proj.p_creator) + " " + "liked project "+ str(project_name)
-        new_activity = Activities(activity=act,project_involved = proj.project_name,user_involved = proj.p_creator,status = False)
+        new_activity = Activities(activity=act,project_involved = proj,user_involved = proj.p_creator,status = False)
         new_activity.save()
         # -----activity----
 

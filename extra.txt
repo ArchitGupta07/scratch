@@ -3,3 +3,5 @@
 
 2) check views
 3) check models
+4) forimages using cloudinary
+5) for database using postgressql which is deployed on railway.app

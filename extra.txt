@@ -5,3 +5,8 @@
 3) check models
 4) forimages using cloudinary
 5) for database using postgressql which is deployed on railway.app
+
+
+msteams://teams.microsoft.com/l/meetup-join/19:meeting_NDFhMDVkODgtMThmZS00ZTE2LTllYmUtNmYxOWI4MDE3ZTJi@thread.v2/0?context=%7b%22Tid%22%3a%22fd1266d7-62fb-4683-852f-417261402a2c%22%2c%22Oid%22%3a%223840e0e9-446d-4381-911c-20fe4d07a797%22%7d
+
+msteams://teams.microsoft.com/l/meetup-join/19:meeting_NDFhMDVkODgtMThmZS00ZTE2LTllYmUtNmYxOWI4MDE3ZTJi@thread.v2/0?context=%7b%22Tid%22%3a%22fd1266d7-62fb-4683-852f-417261402a2c%22%2c%22Oid%22%3a%223840e0e9-446d-4381-911c-20fe4d07a797%22%7d&anon=true&deeplinkId=596a92ef-a0cc-48a4-8404-484f8bb7247a&launchAgent=join_launcher&type=meetup-join&directDl=true&msLaunch=true&enableMobilePage=true&fqdn=teams.microsoft.com

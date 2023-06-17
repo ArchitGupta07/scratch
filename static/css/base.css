@@ -570,6 +570,25 @@ input:focus{
   /* background: #009cff; */
 
 }
+.post-comment{
+  position: relative;
+  
+}
+.post-comment::before{
+  content: "";
+  background-color: grey;
+  position: absolute;
+  min-height: 100%;
+  width: 1px;
+  left: -10px;
+
+}
+/* .post-comment:not(:first-child){
+  margin-left: 3rem;
+  margin-top: 1rem;
+} */
+
+
 .post-comment .list{
   width: 100%;
   margin-bottom: 12px;
@@ -659,8 +678,10 @@ input:focus{
 .reply-com {
   display: grid;
   justify-content: end;
+ 
 
 }
+
 .reply-com .content{
   width: 100%;
   background: transparent;
@@ -681,7 +702,18 @@ input:focus{
   display: grid;
   /* justify-content: end; */
   padding: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
+  position: relative;
+}
+
+.replies::before{
+  content: "";
+  background-color: grey;
+  position: absolute;
+  min-height: 100%;
+  width: 1px;
+  left: -10px;
+
 }
 .replies .user{
   display: flex;

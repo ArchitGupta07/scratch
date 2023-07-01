@@ -101,6 +101,7 @@ DATABASES = {
         'PORT': '6740',
     }
     }
+aa
 # DATABASES['default'] = dj_database_url.config()
     # DATABASES = {
     # 'default': {

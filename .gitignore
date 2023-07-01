@@ -1,4 +1,7 @@
 *.env
 bin/
 lib/
-*/sqlite3
+*/sqlite
+../scratch/settings.py
+scratch\settings.py
+*/ettings.py

@@ -93,14 +93,15 @@ DATABASES = {
 # else:
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': '',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'M3p6TmzWarz13N4O0dJu',
-        'HOST': 'containers-us-west-12.railway.app',
-        'PORT': '6740',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
     }
+<<<<<<< HEAD
 aa
 # DATABASES['default'] = dj_database_url.config()
     # DATABASES = {
@@ -113,6 +114,9 @@ aa
     #     'PORT': '5432',
     # }
     # }
+=======
+
+>>>>>>> 4726f7d4e1549850e25f9aeebf07a2f14e7ece60
 
 
 
@@ -167,8 +171,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-cloudinary.config( 
-  cloud_name = "dhtltcefq", 
-  api_key = "811778544593718", 
-  api_secret = "jNuD8lE0bIm1i2jMQiSGP1P7FBY" 
-)
